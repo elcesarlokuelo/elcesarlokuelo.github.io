@@ -1,230 +1,263 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cesar — Portfolio de Automatización Industrial</title>
-<style>
-  :root {
-    --bg: #14181c;
-    --bg-panel: #1c2227;
-    --line: #2c343b;
-    --text: #e8ebed;
-    --text-dim: #8d99a3;
-    --accent: #ff8a3d;
-    --mono: 'IBM Plex Mono', 'Courier New', monospace;
-    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  <title>César Núñez Bayón | Portfolio</title>
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    line-height: 1.6;
-  }
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  header {
-    padding: 4rem 2rem 3rem;
-    border-bottom: 1px solid var(--line);
-    max-width: 900px;
-    margin: 0 auto;
-  }
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-  .eyebrow {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: 0.8rem;
-  }
+    /* animación dropdown */
+    .dropdown {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
 
-  h1 {
-    font-size: 2.4rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    margin-bottom: 0.8rem;
-  }
+    .dropdown.open {
+      max-height: 500px;
+    }
 
-  header p {
-    color: var(--text-dim);
-    max-width: 600px;
-    font-size: 1.05rem;
-  }
+    .card {
+      transition: all 0.2s ease;
+    }
 
-  .stack-row {
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
+    .card:hover {
+      transform: translateY(-4px);
+    }
+  </style>
 
-  .pill {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    border: 1px solid var(--line);
-    color: var(--text-dim);
-    padding: 0.3rem 0.7rem;
-    border-radius: 3px;
-  }
-
-  main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 3rem 2rem 6rem;
-  }
-
-  section.project {
-    border: 1px solid var(--line);
-    background: var(--bg-panel);
-    border-radius: 6px;
-    margin-bottom: 2.5rem;
-    overflow: hidden;
-  }
-
-  .project-header {
-    padding: 1.5rem 1.8rem 1rem;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .project-index {
-    font-family: var(--mono);
-    color: var(--accent);
-    font-size: 0.8rem;
-  }
-
-  .project-header h2 {
-    font-size: 1.4rem;
-    margin: 0.3rem 0 0.6rem;
-  }
-
-  .project-header p {
-    color: var(--text-dim);
-    font-size: 0.95rem;
-    max-width: 620px;
-  }
-
-  .video-wrap {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%; /* 16:9 */
-    background: #000;
-  }
-
-  .video-wrap iframe {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    border: 0;
-  }
-
-  .project-footer {
-    padding: 1.2rem 1.8rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .tech-tags {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    color: var(--text-dim);
-  }
-
-  .download-btn {
-    font-family: var(--mono);
-    font-size: 0.85rem;
-    color: var(--bg);
-    background: var(--accent);
-    padding: 0.55rem 1.1rem;
-    border-radius: 4px;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-  .download-btn:hover { opacity: 0.85; }
-
-  footer {
-    text-align: center;
-    padding: 2rem;
-    color: var(--text-dim);
-    font-size: 0.85rem;
-    font-family: var(--mono);
-  }
-
-  footer a { color: var(--accent); text-decoration: none; }
-</style>
 </head>
-<body>
 
-<header>
-  <div class="eyebrow">// portfolio · automatización industrial</div>
-  <h1>Cesar</h1>
-  <p>Proyectos de programación PLC, simulación en Factory I/O e integración SCADA/HMI con OPC UA. Cada ejemplo incluye el proyecto fuente descargable y un video de la simulación en funcionamiento.</p>
-  <div class="stack-row">
-    <span class="pill">CODESYS V3.5</span>
-    <span class="pill">TIA Portal</span>
-    <span class="pill">Factory I/O</span>
-    <span class="pill">Ignition SCADA</span>
-    <span class="pill">IEC 61131-3</span>
+<body class="bg-slate-950 text-white">
+
+  <div class="flex">
+
+    <!-- SIDEBAR -->
+    <aside class="fixed left-0 top-0 h-screen w-72 bg-slate-900 border-r border-slate-800 p-6">
+
+      <h1 class="text-2xl font-bold">
+        César Núñez Bayón
+      </h1>
+
+      <p class="text-slate-400 text-sm mt-2">
+        Robotics · Electronics · Mechatronics Engineer
+      </p>
+
+      <nav class="mt-10 space-y-3">
+
+        <a href="#about" class="block hover:text-blue-400">
+          About Me
+        </a>
+
+        <!-- PROJECTS BUTTON -->
+        <button onclick="toggleProjects()"
+          class="w-full text-left flex justify-between items-center hover:text-blue-400">
+          <span>Projects</span>
+          <span id="arrow">▾</span>
+        </button>
+
+        <!-- DROPDOWN -->
+        <div id="projects-menu" class="dropdown ml-4 mt-2 space-y-2 text-sm border-l border-slate-700 pl-4">
+
+          <a href="projects/robot-autonomo.html" class="block hover:text-blue-400">
+            Robotics
+          </a>
+
+          <a href="projects/plc-scada.html" class="block hover:text-blue-400">
+            Industrial Automation
+          </a>
+
+          <a href="projects/embedded.html" class="block hover:text-blue-400">
+            Embedded Systems
+          </a>
+
+          <a href="projects/yolo-vision.html" class="block hover:text-blue-400">
+            Computer Vision
+          </a>
+
+          <a href="projects/software.html" class="block hover:text-blue-400">
+            Software
+          </a>
+
+        </div>
+
+        <a href="#education" class="block hover:text-blue-400 mt-6">
+          Education
+        </a>
+
+        <a href="#contact" class="block hover:text-blue-400">
+          Contact
+        </a>
+
+      </nav>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="ml-72">
+
+      <!-- HERO -->
+      <section class="min-h-screen flex items-center px-10">
+
+        <div class="max-w-5xl">
+
+          <!-- IMAGEN ARRIBA -->
+          <div class="relative w-full h-[403px] rounded-xl overflow-hidden mb-10">
+
+            <img src="../assets/brazo_robot.avif" class="w-full h-full object-cover
+              [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]
+              [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
+
+          </div>
+
+          <div>
+            <h1 class="text-6xl font-bold leading-tight">
+              Robotics, Electronics<br>
+              & Mechatronics Engineer
+            </h1>
+
+            <p class="text-slate-400 mt-6 max-w-5xl text-lg">
+              Robotics engineer focused on industrial automation, PLCs and SCADA systems, machine vision and embedded
+              systems.<br>
+              I design complete systems combining hardware, software and control theory to solve real-world industrial
+              and autonomous problems.
+            </p>
+          </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="py-24 px-10">
+
+        <h2 class="text-4xl font-bold mb-6">About Me</h2>
+
+        <p class="text-slate-400 max-w-3xl leading-relaxed">
+          Engineer graduate specialized in robotics and industrial automation.
+          I design complete systems combining hardware, software and control theory
+          to solve real-world industrial and autonomous problems.
+        </p>
+
+      </section>
+
+      <!-- EDUCATION -->
+      <!-- EDUCATION -->
+      <section id="education" class="py-24 px-10">
+
+        <h2 class="text-4xl font-bold mb-6">Education</h2>
+
+        <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
+          Grado en Ingeniería Robótica, Electrónica y Mecatrónica, Universidad de Sevilla
+        </div>
+
+        <!-- LANGUAGES SUBSECTION -->
+        <div class="mt-10">
+          <h3 class="text-2xl font-semibold mb-4">Languages</h3>
+          <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
+            English — Cambridge English: First (FCE), Pass at Grade A, Cambridge English Scale 183/190 — CEFR Level C1
+          </div>
+        </div>
+
+        <!-- Courses SUBSECTION -->
+        <div class="mt-10">
+          <h3 class="text-2xl font-semibold mb-4">Courses</h3>
+          <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl">
+            <ul class="space-y-3">
+              <li>TIA PORTAL COMPLETO CPU 1200: PROGRAMACIÓNSIEMENS.com</li>
+              
+              <li>Curso Básico de Igualdad de Oportunidades entre Mujeres y Hombres en el Ámbito Laboral</li>
+            </ul>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="py-24 bg-slate-900 px-10 space-y-6">
+
+        <h2 class="text-4xl font-bold mb-6">Contact and Socials</h2>
+
+        <p class="text-slate-400">
+          <a href="mailto:cesarn1000@gmail.com" class="flex items-center gap-2 hover:text-blue-400">
+
+            <!-- icono carta -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l9 6 9-6-9-6-9 6z" />
+
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 8v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8" />
+            </svg>
+
+            Email: cesarn1000@gmail.com
+          </a>
+        </p>
+
+        <p class="text-slate-400">
+          <a href="https://www.linkedin.com/in/tu-perfil" target="_blank"
+            class="flex items-center gap-2 hover:text-blue-400">
+
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+
+              <path
+                d="M20.447 20.452H17.2v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.137 1.445-2.137 2.939v5.667H9.963V9h3.111v1.561h.045c.434-.824 1.494-1.693 3.076-1.693 3.29 0 3.897 2.164 3.897 4.977v6.607zM5.337 7.433a1.804 1.804 0 11.001-3.608 1.804 1.804 0 01-.001 3.608zM6.953 20.452H3.72V9h3.233v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+            </svg>
+
+            LinkedIn: César Núñez Bayón
+          </a>
+        </p>
+
+        <p class="text-slate-400">
+          <a href="https://github.com/elcesarlokuelo" target="_blank"
+            class="flex items-center gap-2 hover:text-blue-400">
+
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+
+              <path
+                d="M12 .5C5.73.5.75 5.7.75 12.1c0 5.1 3.29 9.4 7.86 10.93.58.12.79-.26.79-.58v-2.1c-3.2.72-3.87-1.42-3.87-1.42-.52-1.36-1.27-1.72-1.27-1.72-1.04-.73.08-.72.08-.72 1.15.08 1.76 1.22 1.76 1.22 1.02 1.8 2.67 1.28 3.32.98.1-.76.4-1.28.73-1.57-2.55-.3-5.23-1.32-5.23-5.86 0-1.3.45-2.37 1.2-3.2-.12-.3-.52-1.5.12-3.12 0 0 .98-.32 3.2 1.22.93-.27 1.92-.4 2.9-.4.98 0 1.97.13 2.9.4 2.22-1.54 3.2-1.22 3.2-1.22.64 1.62.24 2.82.12 3.12.75.83 1.2 1.9 1.2 3.2 0 4.56-2.68 5.56-5.24 5.86.41.36.77 1.08.77 2.18v3.24c0 .32.21.7.8.58A10.94 10.94 0 0023.25 12.1C23.25 5.7 18.27.5 12 .5z" />
+            </svg>
+
+            GitHub: elcesarlokuelo
+          </a>
+        </p>
+
+        <p class="text-slate-400">
+          <a href="tel:+34123456789" class="flex items-center gap-2 hover:text-blue-400">
+
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 5a2 2 0 012-2h2l2 5-2 1c1 3 3 5 6 6l1-2 5 2v2a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+
+            Telephone: 644 37 56 41
+          </a>
+        </p>
+
+      </section>
+
+    </main>
+
   </div>
-</header>
 
-<main>
+  <!-- JS -->
+  <script>
+    function toggleProjects() {
+      const menu = document.getElementById("projects-menu");
+      const arrow = document.getElementById("arrow");
 
-  <section class="project">
-    <div class="project-header">
-      <div class="project-index">01</div>
-      <h2>Stacker Crane — Almacén automatizado</h2>
-      <p>Sistema de almacén con grúa apiladora multi-instancia. Gestión de posiciones mediante contador IEC 61131-3 y control de ciclos de ocupación/desocupación.</p>
-    </div>
+      menu.classList.toggle("open");
 
-    <div class="video-wrap">
-      <iframe
-        src="https://www.youtube.com/embed/VIDEO_ID_1"
-        title="Demo Stacker Crane"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
-    </div>
-
-    <div class="project-footer">
-      <span class="tech-tags">CODESYS · Factory I/O · Ladder</span>
-      <a class="download-btn" href="../Stacker_Crane/Automated_Warehouse_cesar.project" download>↓ Descargar proyecto</a>
-    </div>
-  </section>
-
-  <section class="project">
-    <div class="project-header">
-      <div class="project-index">02</div>
-      <h2>Nombre del siguiente proyecto</h2>
-      <p>Descripción breve del escenario resuelto y la lógica aplicada.</p>
-    </div>
-
-    <div class="video-wrap">
-      <iframe
-        src="https://www.youtube.com/embed/VIDEO_ID_2"
-        title="Demo proyecto 2"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
-    </div>
-
-    <div class="project-footer">
-      <span class="tech-tags">CODESYS · Factory I/O</span>
-      <a class="download-btn" href="#" download>↓ Descargar proyecto</a>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  Repositorio en <a href="https://github.com/TU_USUARIO/TU_REPO">GitHub</a>
-</footer>
-
+      arrow.textContent = menu.classList.contains("open") ? "▴" : "▾";
+    }
+  </script>
 </body>
 </html>
