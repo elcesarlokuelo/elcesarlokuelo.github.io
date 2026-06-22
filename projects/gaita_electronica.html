@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaita electrónica MIDI Robot</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-950 text-white">
+
+  <div class="max-w-4xl mx-auto px-8 py-16">
+
+    <a href="../index.html" class="text-blue-400">← Back</a>
+
+    <h1 class="text-5xl font-bold mt-6">Gaita Electrónica MIDI</h1>
+
+    <p class="text-slate-400 mt-4">Arduino · FreeCAD · MIDI</p>
+
+    <div class="mt-10 bg-slate-800 p-6 rounded-xl">
+      Este fue mi trabajo de Fin de Grado en el Grado en Ingeniería Electrónica, Robótica y
+      Mecatrónica, en el que se me concedió la Matrícula de Honor. Consiste en el diseño de una gaita
+      electrónica MIDI.<br>
+      Todo el contenido de trabajo está subido al repositorio:
+      <a href="https://github.com/elcesarlokuelo/Gaita_electronica_MIDI" target="_blank" class="text-blue-400">
+        https://github.com/elcesarlokuelo/Gaita_electronica_MIDI
+      </a>.<br>
+      Este trabajo trata sobre el diseño y construcción de un instrumento electrónico de viento o controlador MIDI
+      mediante un microcontrolador Arduino. El instrumento que se imitará es la gaita gallega. El
+      objetivo del proyecto es crear una herramienta con un comportamiento lo más cercano posible al
+      instrumento real, para permitir que las personas interesadas en el instrumento puedan aprender y
+      acercarse al instrumento sin tener que invertir el dinero necesario para obtener una gaita de principiante.
+    </div>
+
+    <div class="mt-10">
+      <h2 class="text-2xl font-semibold mb-4">Vídeo</h2>
+      <div class="rounded-xl overflow-hidden aspect-video">
+        <iframe src="https://www.youtube.com/watch?v=9ZNCx_jy5ZM" class="w-full h-full" allowfullscreen
+          title="Gaita Electrónica MIDI">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Carousel de planos -->
+    <div class="mt-10">
+      <h2 class="text-2xl font-semibold mb-4">Planos</h2>
+
+      <!-- Contador -->
+      <div class="flex items-center justify-between mb-3">
+        <span id="contador" class="text-slate-400 text-sm">1 / 6</span>
+        <div class="flex gap-2">
+          <button onclick="mover(-1)" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">←
+            Anterior</button>
+          <button onclick="mover(1)"
+            class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">Siguiente →</button>
+        </div>
+      </div>
+
+      <!-- Visor -->
+      <div class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden">
+        <img id="visor" src="/projects/gaita_electronica/plano1.jpg" class="w-full object-contain"
+          style="max-height: 80vh;" alt="Plano 1">
+        <div class="px-4 py-3 flex items-center justify-between">
+          <p id="nombre" class="text-sm font-medium">Plano 1</p>
+          <a id="descarga" href="/projects/gaita_electronica/plano1.jpg" download
+            class="text-xs px-3 py-1 bg-blue-600 hover:bg-blue-500 rounded-lg transition">↓ Descargar</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const planos = [
+      { src: '/projects/gaita_electronica/plano1.jpg', nombre: 'Plano 1' },
+      { src: '/projects/gaita_electronica/plano2.jpg', nombre: 'Plano 2' },
+      { src: '/projects/gaita_electronica/plano3.jpg', nombre: 'Plano 3' },
+      { src: '/projects/gaita_electronica/plano4.jpg', nombre: 'Plano 4' },
+      { src: '/projects/gaita_electronica/plano5.jpg', nombre: 'Plano 5' },
+      { src: '/projects/gaita_electronica/gaita_esquemático.png', nombre: 'Esquemático' },
+    ];
+
+    let actual = 0;
+
+    function mover(dir) {
+      actual = (actual + dir + planos.length) % planos.length;
+      const p = planos[actual];
+      document.getElementById('visor').src = p.src;
+      document.getElementById('visor').alt = p.nombre;
+      document.getElementById('nombre').textContent = p.nombre;
+      document.getElementById('descarga').href = p.src;
+      document.getElementById('descarga').download = p.src;
+      document.getElementById('contador').textContent = `${actual + 1} / ${planos.length}`;
+    }
+  </script>
+
+</body>
+
+</html>
