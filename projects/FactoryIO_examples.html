@@ -107,7 +107,7 @@
             <p class="mt-3 text-base text-slate-300">
               This page contains a collection of solved examples for the Factory IO software, which is a 3D
               simulation platform for industrial automation. The examples cover various scenarios and challenges,
-              and provide solutions using different PLC programming environments such as Codesys and TIA Portal
+              and provides solutions using different PLC programming environments such as Codesys and TIA Portal
               and different communication protocols like Modbus, Profinet or OPC-UA.
             </p>
 
@@ -119,66 +119,50 @@
             </p>
 
             <p class="mt-3 text-base text-slate-300">
-              The project went through several hardware prototypes, progressively refining the sensor selection,
-              circuit layout, and physical design. Each iteration informed the next — for example, two different
-              capacitive sensing approaches (DIY CapSense circuits and TTP223 touch sensors) were evaluated and
-              discarded before settling on the MPR121 module, which offered better reliability, lower pin usage,
-              and cleaner I2C integration.
+              Each example will include a description of the problem, the implemented solution in the chosen PLC code language, 
+              and the corresponding software and communication protocol used. For all the examples there will be a video 
+              demonstration of the solution in action within the Factory IO simulation environment.
             </p>
           </div>
 
-          <!-- Hardware -->
+          <!-- Assembler -->
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
             <h2 class="text-2xl font-semibold mb-4">Assembler</h2>
 
             <p class="text-base text-slate-300">
-              The technical details are covered in the project report, available as a PDF in the repository above.
-              As a summary of the main hardware components:
+              This 
+              The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
             </p>
+          </div>
 
-            <ul class="mt-3 text-base text-slate-300 space-y-3 list-disc list-inside">
-              <li>
-                <span class="text-white font-medium">Arduino UNO microcontroller:</span>
-                8-bit microcontroller based on the ATmega328P. It is the most well-known Arduino model,
-                offering an appropriate number of GPIOs for the project, sufficient memory, and broad
-                compatibility with sensor modules.
-              </li>
-              <li>
-                <span class="text-white font-medium">MPR121 Breakout V12 module:</span>
-                capacitive sensor controller with I2C interface. It features 12 electrode pins and allows
-                capacitive sensing in any electronics project. On the software side, the Adafruit MPR121
-                library and the Wire library for I2C are used.
-              </li>
-              <li>
-                <span class="text-white font-medium">HX710B absolute pressure sensor:</span>
-                offers a detection range of 0 to 40 KPa, sufficient for the project's needs. The sensor
-                board includes the PSG010S sensor and a high-precision 24-bit A/D converter. There are no
-                specific Arduino libraries for this sensor, but the Q2HX711.h library provides compatible functions.
-              </li>
-              <li>
-                <span class="text-white font-medium">Other components:</span>
-                push buttons, a rotary encoder (EC-11) for volume control, an LCD1602 display for the user
-                interface, a 5-pin MIDI female connector, PCB boards for the final assembly, and resistors
-                of various values.
-              </li>
-            </ul>
+          <!-- Assembler (Analog)-->
+          <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+            <h2 class="text-2xl font-semibold mb-4">Assembler (Analog)</h2>
 
-            <div class="mt-6 flex gap-3 flex-wrap">
-              <img src="/projects/factoryIO_examples/Arduino_uno.png" onclick="abrirModal(this.src)"
-                class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-              <img src="/projects/factoryIO_examples/mpr.png" onclick="abrirModal(this.src)"
-                class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-              <img src="/projects/factoryIO_examples/encoder.png" onclick="abrirModal(this.src)"
-                class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-              <img src="/projects/factoryIO_examples/lcd.png" onclick="abrirModal(this.src)"
-                class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-              <img src="/projects/factoryIO_examples/presion.png" onclick="abrirModal(this.src)"
-                class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-              <img src="/projects/factoryIO_examples/pulsadores.png" onclick="abrirModal(this.src)"
-                class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-              <img src="/projects/factoryIO_examples/pcb.png" onclick="abrirModal(this.src)"
-                class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-            </div>
+            <p class="text-base text-slate-300">
+              This is 
+              The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
+            </p>
+          </div>
+
+          <!-- Automated Warehouse -->
+          <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+            <h2 class="text-2xl font-semibold mb-4">Automated Warehouse</h2>
+
+            <p class="text-base text-slate-300">
+              This is 
+              The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
+            </p>
+          </div>
+
+          <!-- Buffer Station -->
+          <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+            <h2 class="text-2xl font-semibold mb-4">Buffer Station</h2>
+
+            <p class="text-base text-slate-300">
+              This is 
+              The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
+            </p>
           </div>
 
           <!-- Software -->
