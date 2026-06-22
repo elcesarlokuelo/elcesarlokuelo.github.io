@@ -1,84 +1,297 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gaita electrónica MIDI Robot</title>
+  <title>MIDI Electronic Bagpipe</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-slate-950 text-white">
 
-  <div class="max-w-4xl mx-auto px-8 py-16">
+      <!-- SIDEBAR -->
+    <aside class="fixed left-0 top-0 h-screen w-72 bg-slate-900 border-r border-slate-800 p-6">
 
+      <h1 class="text-2xl font-bold">
+        César Núñez Bayón
+      </h1>
+
+      <p class="text-slate-400 text-sm mt-2">
+        Robotics · Electronics · Mechatronics Engineer
+      </p>
+
+      <nav class="mt-10 space-y-3">
+
+        <a href="#about" class="block hover:text-blue-400">
+          About Me
+        </a>
+
+        <!-- PROJECTS BUTTON -->
+        <button onclick="toggleProjects()"
+          class="w-full text-left flex justify-between items-center hover:text-blue-400">
+          <span>Projects</span>
+          <span id="arrow">▾</span>
+        </button>
+
+        <!-- DROPDOWN -->
+        <div id="projects-menu" class="dropdown ml-4 mt-2 space-y-2 text-sm border-l border-slate-700 pl-4">
+
+          <a href="projects/FactoryIO_examples.html" class="block hover:text-blue-400">
+            Solved Factory IO Examples
+          </a>
+
+          <a href="projects/gaita_electronica.html" class="block hover:text-blue-400">
+            Electronic bagpipe MIDI
+          </a>
+
+          <a href="projects/embedded.html" class="block hover:text-blue-400">
+            Robotic Arm with Arduino
+          </a>
+
+          <a href="projects/yolo-vision.html" class="block hover:text-blue-400">
+            Computer Vision with Kinect and Orbbec Cameras.
+          </a>
+
+          <a href="projects/project_template.html" class="block hover:text-blue-400">
+            Ejemplo de pagina de proyecto
+          </a>
+
+        </div>
+
+        <a href="#education" class="block hover:text-blue-400 mt-6">
+          Education
+        </a>
+
+        <a href="#contact" class="block hover:text-blue-400">
+          Contact and Socials
+        </a>
+
+      </nav>
+
+    </aside>
+
+  <div class="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-16">
     <a href="../index.html" class="text-blue-400">← Back</a>
 
-    <h1 class="text-5xl font-bold mt-6">Gaita Electrónica MIDI</h1>
-
-    <p class="text-slate-400 mt-4">Arduino · FreeCAD · MIDI</p>
-
-    <div class="mt-10 bg-slate-800 p-6 rounded-xl">
-      Este fue mi trabajo de Fin de Grado en el Grado en Ingeniería Electrónica, Robótica y
-      Mecatrónica, en el que se me concedió la Matrícula de Honor. Consiste en el diseño de una gaita
-      electrónica MIDI.<br>
-      Todo el contenido de trabajo está subido al repositorio:
-      <a href="https://github.com/elcesarlokuelo/Gaita_electronica_MIDI" target="_blank" class="text-blue-400">
-        https://github.com/elcesarlokuelo/Gaita_electronica_MIDI
-      </a>.<br>
-      Este trabajo trata sobre el diseño y construcción de un instrumento electrónico de viento o controlador MIDI
-      mediante un microcontrolador Arduino. El instrumento que se imitará es la gaita gallega. El
-      objetivo del proyecto es crear una herramienta con un comportamiento lo más cercano posible al
-      instrumento real, para permitir que las personas interesadas en el instrumento puedan aprender y
-      acercarse al instrumento sin tener que invertir el dinero necesario para obtener una gaita de principiante.
+    <div class="relative w-full max-w-5xl mx-auto h-[600px] rounded-xl overflow-hidden mb-10">
+      <img src="/projects/gaita_electronica/gaita.png" class="w-full h-full object-cover
+    [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]
+    [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
     </div>
 
-    <div class="mt-10">
-      <h2 class="text-2xl font-semibold mb-4">Vídeo</h2>
+    <h1 class="text-5xl font-bold mt-6">MIDI Electronic Bagpipe</h1>
+    <p class="text-slate-400 mt-4">Arduino · FreeCAD · MIDI</p>
+
+    <!-- Descripción -->
+    <div class="mt-10 bg-slate-800 p-6 rounded-xl">
+      <p class="mt-3 text-base text-slate-300">
+        This was my Final Degree Project for the Degree in Electronic, Robotics and Mechatronics Engineering,
+        for which I was awarded the highest distinction (Matrícula de Honor). It consists of the design and
+        construction of a MIDI electronic Galician bagpipe controller.
+      </p>
+
+      <p class="mt-3 text-base text-slate-300">
+        All project content is available in the repository:
+        <a href="https://github.com/elcesarlokuelo/Gaita_electronica_MIDI" target="_blank" class="text-blue-400">
+          https://github.com/elcesarlokuelo/Gaita_electronica_MIDI
+        </a>
+      </p>
+
+      <p class="mt-3 text-base text-slate-300">
+        The goal was to create an electronic wind instrument that behaves as closely as possible to a real
+        Galician bagpipe, allowing people interested in learning to do so without having to invest in a
+        traditional instrument. The controller sends MIDI messages over USB to a synthesizer running on a
+        computer, and also supports physical MIDI output via a 5-pin DIN connector for connection to
+        external hardware synthesizers.
+      </p>
+
+      <p class="mt-3 text-base text-slate-300">
+        The project went through several hardware prototypes, progressively refining the sensor selection,
+        circuit layout, and physical design. Each iteration informed the next — for example, two different
+        capacitive sensing approaches (DIY CapSense circuits and TTP223 touch sensors) were evaluated and
+        discarded before settling on the MPR121 module, which offered better reliability, lower pin usage,
+        and cleaner I2C integration.
+      </p>
+    </div>
+
+    <!-- Hardware -->
+    <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+      <h2 class="text-2xl font-semibold mb-4">Hardware</h2>
+
+      <p class="text-base text-slate-300">
+        The technical details are covered in the project report, available as a PDF in the repository above.
+        As a summary of the main hardware components:
+      </p>
+
+      <ul class="mt-3 text-base text-slate-300 space-y-3 list-disc list-inside">
+        <li>
+          <span class="text-white font-medium">Arduino UNO microcontroller:</span>
+          8-bit microcontroller based on the ATmega328P. It is the most well-known Arduino model,
+          offering an appropriate number of GPIOs for the project, sufficient memory, and broad
+          compatibility with sensor modules.
+        </li>
+        <li>
+          <span class="text-white font-medium">MPR121 Breakout V12 module:</span>
+          capacitive sensor controller with I2C interface. It features 12 electrode pins and allows
+          capacitive sensing in any electronics project. On the software side, the Adafruit MPR121
+          library and the Wire library for I2C are used.
+        </li>
+        <li>
+          <span class="text-white font-medium">HX710B absolute pressure sensor:</span>
+          offers a detection range of 0 to 40 KPa, sufficient for the project's needs. The sensor
+          board includes the PSG010S sensor and a high-precision 24-bit A/D converter. There are no
+          specific Arduino libraries for this sensor, but the Q2HX711.h library provides compatible functions.
+        </li>
+        <li>
+          <span class="text-white font-medium">Other components:</span>
+          push buttons, a rotary encoder (EC-11) for volume control, an LCD1602 display for the user
+          interface, a 5-pin MIDI female connector, PCB boards for the final assembly, and resistors
+          of various values.
+        </li>
+      </ul>
+
+      <div class="mt-6 flex gap-3 flex-wrap">
+        <img src="/projects/gaita_electronica/Arduino_uno.png" onclick="abrirModal(this.src)"
+          class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+        <img src="/projects/gaita_electronica/mpr.png" onclick="abrirModal(this.src)"
+          class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+        <img src="/projects/gaita_electronica/encoder.png" onclick="abrirModal(this.src)"
+          class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+        <img src="/projects/gaita_electronica/lcd.png" onclick="abrirModal(this.src)"
+          class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+        <img src="/projects/gaita_electronica/presion.png" onclick="abrirModal(this.src)"
+          class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+        <img src="/projects/gaita_electronica/pulsadores.png" onclick="abrirModal(this.src)"
+          class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+        <img src="/projects/gaita_electronica/pcb.png" onclick="abrirModal(this.src)"
+          class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+      </div>
+    </div>
+
+    <!-- Software & Physical Design -->
+    <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+      <h2 class="text-2xl font-semibold mb-4">Software</h2>
+
+      <p class="text-base text-slate-300">
+        The microcontroller was programmed in Arduino IDE using C++. MIDI communication was handled via USB
+        using Hairless MIDI Serial and LoopMIDI. Between those two softwares, I can translate the USB-serial
+        messages emmited by the Arduino into the baud rate and format expected by the MIDI protocol, and route
+        hem to the synthesizer.<br>
+
+        The synthesizer used for sound generation was Universal Piper,
+        a standalone bagpipe synthesizer with a library of 16 different bagpipe types including the Galician
+        bagpipe besides others like the Scottish or Irish, configurable via MIDI Control Change messages.
+
+      <div class="mt-6 flex gap-3 flex-wrap">
+        <img src="/projects/gaita_electronica/serial-midi.png" onclick="abrirModal(this.src)"
+          class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+        <img src="/projects/gaita_electronica/universal_piper.png" onclick="abrirModal(this.src)"
+          class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+      </div>
+      </p>
+    </div>
+
+    <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+      <h2 class="text-2xl font-semibold mb-4">Mechanical Design</h2>
+
+      <p class="mt-3 text-base text-slate-300">
+        Parts were modelled in FreeCAD and printed in PLA using an Anycubic Kobra 2 printer. The 3D-printed
+        enclosure houses all the electronics and keeps the controls accessible to the player, though the
+        ergonomics leave room for improvement in future iterations.
+      </p>
+
+      <!-- 3D Models -->
+      <div class="mt-6">
+        <div class="flex items-center justify-between mb-3">
+          <span id="contador3d" class="text-slate-400 text-sm">1 / 11</span>
+
+          <div class="flex gap-2">
+            <button onclick="mover3d(-1)"
+              class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">
+              ← Previous
+            </button>
+
+            <button onclick="mover3d(1)"
+              class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">
+              Next →
+            </button>
+          </div>
+        </div>
+
+        <div class="border border-slate-700 rounded-xl overflow-hidden">
+          <canvas id="canvas3d" class="w-full" style="height: 500px;"></canvas>
+
+          <div class="px-4 py-3 flex items-center justify-between">
+            <p id="nombre3d" class="text-sm font-medium">boca_fol</p>
+            <p class="text-xs text-slate-500">
+              Click and drag to rotate · Scroll to zoom
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video -->
+    <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+      <h2 class="text-2xl font-semibold mb-4">Demo Video</h2>
       <div class="rounded-xl overflow-hidden aspect-video">
-        <iframe src="https://www.youtube.com/embed/9ZNCx_jy5ZM?si=10EmcQu5l8V32Gcf" class="w-full h-full" allowfullscreen
-          title="Gaita Electrónica MIDI">
+        <iframe src="https://www.youtube.com/embed/9ZNCx_jy5ZM?si=10EmcQu5l8V32Gcf" class="w-full h-full"
+          allowfullscreen title="MIDI Electronic Bagpipe">
         </iframe>
       </div>
     </div>
 
-    <!-- Carousel de planos -->
-    <div class="mt-10">
-      <h2 class="text-2xl font-semibold mb-4">Planos</h2>
+    <!-- Technical Drawings -->
+    <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+      <h2 class="text-2xl font-semibold mb-4">Schematics</h2>
 
-      <!-- Contador -->
       <div class="flex items-center justify-between mb-3">
         <span id="contador" class="text-slate-400 text-sm">1 / 6</span>
         <div class="flex gap-2">
           <button onclick="mover(-1)" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">←
-            Anterior</button>
+            Previous</button>
           <button onclick="mover(1)"
-            class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">Siguiente →</button>
+            class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">Next →</button>
         </div>
       </div>
 
-      <!-- Visor -->
-      <div class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden">
+      <div class="border border-slate-700 rounded-xl overflow-hidden">
         <img id="visor" src="/projects/gaita_electronica/plano1.jpg" class="w-full object-contain"
-          style="max-height: 80vh;" alt="Plano 1">
+          style="max-height: 80vh;" alt="Drawing 1">
         <div class="px-4 py-3 flex items-center justify-between">
-          <p id="nombre" class="text-sm font-medium">Plano 1</p>
+          <p id="nombre" class="text-sm font-medium">Drawing 1</p>
           <a id="descarga" href="/projects/gaita_electronica/plano1.jpg" download
-            class="text-xs px-3 py-1 bg-blue-600 hover:bg-blue-500 rounded-lg transition">↓ Descargar</a>
+            class="text-xs px-3 py-1 bg-blue-600 hover:bg-blue-500 rounded-lg transition">↓ Download</a>
         </div>
       </div>
     </div>
 
   </div>
 
+  <!-- Modal -->
+  <div id="modal" onclick="cerrarModal()"
+    class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center cursor-pointer">
+    <img id="modal-img" src="" class="max-h-[90vh] max-w-[90vw] rounded-xl object-contain">
+  </div>
+
   <script>
+    function abrirModal(src) {
+      document.getElementById('modal-img').src = src;
+      document.getElementById('modal').classList.remove('hidden');
+    }
+
+    function cerrarModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
     const planos = [
-      { src: '/projects/gaita_electronica/plano1.jpg', nombre: 'Plano 1' },
-      { src: '/projects/gaita_electronica/plano2.jpg', nombre: 'Plano 2' },
-      { src: '/projects/gaita_electronica/plano3.jpg', nombre: 'Plano 3' },
-      { src: '/projects/gaita_electronica/plano4.jpg', nombre: 'Plano 4' },
-      { src: '/projects/gaita_electronica/plano5.jpg', nombre: 'Plano 5' },
-      { src: '/projects/gaita_electronica/gaita_esquemático.png', nombre: 'Esquemático' },
+      { src: '/projects/gaita_electronica/plano1.jpg', nombre: 'Drawing 1' },
+      { src: '/projects/gaita_electronica/plano2.jpg', nombre: 'Drawing 2' },
+      { src: '/projects/gaita_electronica/plano3.jpg', nombre: 'Drawing 3' },
+      { src: '/projects/gaita_electronica/plano4.jpg', nombre: 'Drawing 4' },
+      { src: '/projects/gaita_electronica/plano5.jpg', nombre: 'Drawing 5' },
+      { src: '/projects/gaita_electronica/gaita_esquemático.png', nombre: 'Schematic' },
     ];
 
     let actual = 0;
@@ -93,6 +306,104 @@
       document.getElementById('descarga').download = p.src;
       document.getElementById('contador').textContent = `${actual + 1} / ${planos.length}`;
     }
+  </script>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    const modelos = [
+      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/punteiro3_sup.stl', nombre: 'punteiro3_sup' },
+      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/boca_fol.stl', nombre: 'boca_fol' },
+      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/brida_cables_punteiro.stl', nombre: 'brida_cables_punteiro' },
+      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/caja_inf.stl', nombre: 'caja_inf' },
+      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/caja_sensor.stl', nombre: 'caja_sensor' },
+      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/caja_sup.stl', nombre: 'caja_sup' },
+      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/punteiro3_inf.stl', nombre: 'punteiro3_inf' },
+      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/soporte_pantalla_botones.stl', nombre: 'soporte_pantalla_botones' },
+      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/soporte_soprete.stl', nombre: 'soporte_soprete' },
+      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/soprete.stl', nombre: 'soprete' },
+      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/tuerca.stl', nombre: 'tuerca' },
+    ];
+
+    const canvas = document.getElementById('canvas3d');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    renderer.setClearColor(0x1e293b);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+    camera.position.set(0, 0, 220);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+    dirLight.position.set(5, 10, 7);
+    scene.add(dirLight);
+
+    let actual3d = 0;
+    let meshActual = null;
+    const loader = new STLLoader();
+
+    function cargarModelo(index) {
+      if (meshActual) scene.remove(meshActual);
+      const m = modelos[index];
+      document.getElementById('nombre3d').textContent = m.nombre;
+      document.getElementById('contador3d').textContent = `${index + 1} / ${modelos.length}`;
+
+      loader.load(m.src, (geometry) => {
+        geometry.computeBoundingBox();
+        const center = new THREE.Vector3();
+        geometry.boundingBox.getCenter(center);
+        geometry.translate(-center.x, -center.y, -center.z);
+
+        const size = new THREE.Vector3();
+        geometry.boundingBox.getSize(size);
+        const maxDim = Math.max(size.x, size.y, size.z);
+        camera.position.set(0, 0, maxDim * 2);
+        controls.reset();
+
+        const material = new THREE.MeshStandardMaterial({
+          color: 0xd1d5db,
+          metalness: 0.2,
+          roughness: 0.6
+        }); meshActual = new THREE.Mesh(geometry, material);
+        scene.add(meshActual);
+      });
+    }
+
+    window.mover3d = function (dir) {
+      actual3d = (actual3d + dir + modelos.length) % modelos.length;
+      cargarModelo(actual3d);
+    };
+
+    cargarModelo(0);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+    });
   </script>
 
 </body>
