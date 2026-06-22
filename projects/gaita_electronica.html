@@ -6,16 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MIDI Electronic Bagpipe</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .dropdown {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .dropdown.open {
+      max-height: 500px;
+    }
+  </style>
 </head>
 
 <body class="bg-slate-950 text-white">
 
-      <!-- SIDEBAR -->
+  <div class="flex">
+
+    <!-- SIDEBAR -->
     <aside class="fixed left-0 top-0 h-screen w-72 bg-slate-900 border-r border-slate-800 p-6">
 
-      <h1 class="text-2xl font-bold">
-        César Núñez Bayón
-      </h1>
+      <a href="../index.html">
+        <h1 class="text-2xl font-bold hover:text-blue-400 transition">
+          César Núñez Bayón
+        </h1>
+      </a>
 
       <p class="text-slate-400 text-sm mt-2">
         Robotics · Electronics · Mechatronics Engineer
@@ -23,7 +39,7 @@
 
       <nav class="mt-10 space-y-3">
 
-        <a href="#about" class="block hover:text-blue-400">
+        <a href="../index.html#about" class="block hover:text-blue-400">
           About Me
         </a>
 
@@ -37,33 +53,33 @@
         <!-- DROPDOWN -->
         <div id="projects-menu" class="dropdown ml-4 mt-2 space-y-2 text-sm border-l border-slate-700 pl-4">
 
-          <a href="projects/FactoryIO_examples.html" class="block hover:text-blue-400">
+          <a href="../projects/FactoryIO_examples.html" class="block hover:text-blue-400">
             Solved Factory IO Examples
           </a>
 
-          <a href="projects/gaita_electronica.html" class="block hover:text-blue-400">
-            Electronic bagpipe MIDI
+          <a href="../projects/gaita_electronica.html" class="block text-blue-400 font-medium">
+            Electronic Bagpipe MIDI
           </a>
 
-          <a href="projects/embedded.html" class="block hover:text-blue-400">
+          <a href="../projects/embedded.html" class="block hover:text-blue-400">
             Robotic Arm with Arduino
           </a>
 
-          <a href="projects/yolo-vision.html" class="block hover:text-blue-400">
-            Computer Vision with Kinect and Orbbec Cameras.
+          <a href="../projects/yolo-vision.html" class="block hover:text-blue-400">
+            Computer Vision with Kinect and Orbbec Cameras
           </a>
 
-          <a href="projects/project_template.html" class="block hover:text-blue-400">
+          <a href="../projects/project_template.html" class="block hover:text-blue-400">
             Ejemplo de pagina de proyecto
           </a>
 
         </div>
 
-        <a href="#education" class="block hover:text-blue-400 mt-6">
+        <a href="../index.html#education" class="block hover:text-blue-400 mt-6">
           Education
         </a>
 
-        <a href="#contact" class="block hover:text-blue-400">
+        <a href="../index.html#contact" class="block hover:text-blue-400">
           Contact and Socials
         </a>
 
@@ -71,201 +87,208 @@
 
     </aside>
 
-  <div class="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-16">
-    <a href="../index.html" class="text-blue-400">← Back</a>
+    <!-- MAIN -->
+    <main class="ml-72 w-full">
 
-    <div class="relative w-full max-w-5xl mx-auto h-[600px] rounded-xl overflow-hidden mb-10">
-      <img src="/projects/gaita_electronica/gaita.png" class="w-full h-full object-cover
-    [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]
-    [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
-    </div>
+      <div class="px-10 py-16">
+        <div class="max-w-5xl mx-auto">
 
-    <h1 class="text-5xl font-bold mt-6">MIDI Electronic Bagpipe</h1>
-    <p class="text-slate-400 mt-4">Arduino · FreeCAD · MIDI</p>
+        <div class="relative w-full max-w-5xl mx-auto h-[600px] rounded-xl overflow-hidden mb-10">
+          <img src="/projects/gaita_electronica/gaita.png" class="w-full h-full object-cover
+            [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]
+            [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
+        </div>
 
-    <!-- Descripción -->
-    <div class="mt-10 bg-slate-800 p-6 rounded-xl">
-      <p class="mt-3 text-base text-slate-300">
-        This was my Final Degree Project for the Degree in Electronic, Robotics and Mechatronics Engineering,
-        for which I was awarded the highest distinction (Matrícula de Honor). It consists of the design and
-        construction of a MIDI electronic Galician bagpipe controller.
-      </p>
+        <h1 class="text-5xl font-bold mt-6">MIDI Electronic Bagpipe</h1>
+        <p class="text-slate-400 mt-4">Arduino · FreeCAD · MIDI</p>
 
-      <p class="mt-3 text-base text-slate-300">
-        All project content is available in the repository:
-        <a href="https://github.com/elcesarlokuelo/Gaita_electronica_MIDI" target="_blank" class="text-blue-400">
-          https://github.com/elcesarlokuelo/Gaita_electronica_MIDI
-        </a>
-      </p>
+        <!-- Descripción -->
+        <div class="mt-10 bg-slate-800 p-6 rounded-xl">
+          <p class="mt-3 text-base text-slate-300">
+            This was my Final Degree Project for the Degree in Electronic, Robotics and Mechatronics Engineering,
+            for which I was awarded the highest distinction (Matrícula de Honor). It consists of the design and
+            construction of a MIDI electronic Galician bagpipe controller.
+          </p>
 
-      <p class="mt-3 text-base text-slate-300">
-        The goal was to create an electronic wind instrument that behaves as closely as possible to a real
-        Galician bagpipe, allowing people interested in learning to do so without having to invest in a
-        traditional instrument. The controller sends MIDI messages over USB to a synthesizer running on a
-        computer, and also supports physical MIDI output via a 5-pin DIN connector for connection to
-        external hardware synthesizers.
-      </p>
+          <p class="mt-3 text-base text-slate-300">
+            All project content is available in the repository:
+            <a href="https://github.com/elcesarlokuelo/Gaita_electronica_MIDI" target="_blank" class="text-blue-400">
+              https://github.com/elcesarlokuelo/Gaita_electronica_MIDI
+            </a>
+          </p>
 
-      <p class="mt-3 text-base text-slate-300">
-        The project went through several hardware prototypes, progressively refining the sensor selection,
-        circuit layout, and physical design. Each iteration informed the next — for example, two different
-        capacitive sensing approaches (DIY CapSense circuits and TTP223 touch sensors) were evaluated and
-        discarded before settling on the MPR121 module, which offered better reliability, lower pin usage,
-        and cleaner I2C integration.
-      </p>
-    </div>
+          <p class="mt-3 text-base text-slate-300">
+            The goal was to create an electronic wind instrument that behaves as closely as possible to a real
+            Galician bagpipe, allowing people interested in learning to do so without having to invest in a
+            traditional instrument. The controller sends MIDI messages over USB to a synthesizer running on a
+            computer, and also supports physical MIDI output via a 5-pin DIN connector for connection to
+            external hardware synthesizers.
+          </p>
 
-    <!-- Hardware -->
-    <div class="mt-6 bg-slate-800 p-6 rounded-xl">
-      <h2 class="text-2xl font-semibold mb-4">Hardware</h2>
+          <p class="mt-3 text-base text-slate-300">
+            The project went through several hardware prototypes, progressively refining the sensor selection,
+            circuit layout, and physical design. Each iteration informed the next — for example, two different
+            capacitive sensing approaches (DIY CapSense circuits and TTP223 touch sensors) were evaluated and
+            discarded before settling on the MPR121 module, which offered better reliability, lower pin usage,
+            and cleaner I2C integration.
+          </p>
+        </div>
 
-      <p class="text-base text-slate-300">
-        The technical details are covered in the project report, available as a PDF in the repository above.
-        As a summary of the main hardware components:
-      </p>
+        <!-- Hardware -->
+        <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+          <h2 class="text-2xl font-semibold mb-4">Hardware</h2>
 
-      <ul class="mt-3 text-base text-slate-300 space-y-3 list-disc list-inside">
-        <li>
-          <span class="text-white font-medium">Arduino UNO microcontroller:</span>
-          8-bit microcontroller based on the ATmega328P. It is the most well-known Arduino model,
-          offering an appropriate number of GPIOs for the project, sufficient memory, and broad
-          compatibility with sensor modules.
-        </li>
-        <li>
-          <span class="text-white font-medium">MPR121 Breakout V12 module:</span>
-          capacitive sensor controller with I2C interface. It features 12 electrode pins and allows
-          capacitive sensing in any electronics project. On the software side, the Adafruit MPR121
-          library and the Wire library for I2C are used.
-        </li>
-        <li>
-          <span class="text-white font-medium">HX710B absolute pressure sensor:</span>
-          offers a detection range of 0 to 40 KPa, sufficient for the project's needs. The sensor
-          board includes the PSG010S sensor and a high-precision 24-bit A/D converter. There are no
-          specific Arduino libraries for this sensor, but the Q2HX711.h library provides compatible functions.
-        </li>
-        <li>
-          <span class="text-white font-medium">Other components:</span>
-          push buttons, a rotary encoder (EC-11) for volume control, an LCD1602 display for the user
-          interface, a 5-pin MIDI female connector, PCB boards for the final assembly, and resistors
-          of various values.
-        </li>
-      </ul>
+          <p class="text-base text-slate-300">
+            The technical details are covered in the project report, available as a PDF in the repository above.
+            As a summary of the main hardware components:
+          </p>
 
-      <div class="mt-6 flex gap-3 flex-wrap">
-        <img src="/projects/gaita_electronica/Arduino_uno.png" onclick="abrirModal(this.src)"
-          class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-        <img src="/projects/gaita_electronica/mpr.png" onclick="abrirModal(this.src)"
-          class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-        <img src="/projects/gaita_electronica/encoder.png" onclick="abrirModal(this.src)"
-          class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-        <img src="/projects/gaita_electronica/lcd.png" onclick="abrirModal(this.src)"
-          class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-        <img src="/projects/gaita_electronica/presion.png" onclick="abrirModal(this.src)"
-          class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-        <img src="/projects/gaita_electronica/pulsadores.png" onclick="abrirModal(this.src)"
-          class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-        <img src="/projects/gaita_electronica/pcb.png" onclick="abrirModal(this.src)"
-          class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-      </div>
-    </div>
+          <ul class="mt-3 text-base text-slate-300 space-y-3 list-disc list-inside">
+            <li>
+              <span class="text-white font-medium">Arduino UNO microcontroller:</span>
+              8-bit microcontroller based on the ATmega328P. It is the most well-known Arduino model,
+              offering an appropriate number of GPIOs for the project, sufficient memory, and broad
+              compatibility with sensor modules.
+            </li>
+            <li>
+              <span class="text-white font-medium">MPR121 Breakout V12 module:</span>
+              capacitive sensor controller with I2C interface. It features 12 electrode pins and allows
+              capacitive sensing in any electronics project. On the software side, the Adafruit MPR121
+              library and the Wire library for I2C are used.
+            </li>
+            <li>
+              <span class="text-white font-medium">HX710B absolute pressure sensor:</span>
+              offers a detection range of 0 to 40 KPa, sufficient for the project's needs. The sensor
+              board includes the PSG010S sensor and a high-precision 24-bit A/D converter. There are no
+              specific Arduino libraries for this sensor, but the Q2HX711.h library provides compatible functions.
+            </li>
+            <li>
+              <span class="text-white font-medium">Other components:</span>
+              push buttons, a rotary encoder (EC-11) for volume control, an LCD1602 display for the user
+              interface, a 5-pin MIDI female connector, PCB boards for the final assembly, and resistors
+              of various values.
+            </li>
+          </ul>
 
-    <!-- Software & Physical Design -->
-    <div class="mt-6 bg-slate-800 p-6 rounded-xl">
-      <h2 class="text-2xl font-semibold mb-4">Software</h2>
-
-      <p class="text-base text-slate-300">
-        The microcontroller was programmed in Arduino IDE using C++. MIDI communication was handled via USB
-        using Hairless MIDI Serial and LoopMIDI. Between those two softwares, I can translate the USB-serial
-        messages emmited by the Arduino into the baud rate and format expected by the MIDI protocol, and route
-        hem to the synthesizer.<br>
-
-        The synthesizer used for sound generation was Universal Piper,
-        a standalone bagpipe synthesizer with a library of 16 different bagpipe types including the Galician
-        bagpipe besides others like the Scottish or Irish, configurable via MIDI Control Change messages.
-
-      <div class="mt-6 flex gap-3 flex-wrap">
-        <img src="/projects/gaita_electronica/serial-midi.png" onclick="abrirModal(this.src)"
-          class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-        <img src="/projects/gaita_electronica/universal_piper.png" onclick="abrirModal(this.src)"
-          class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-      </div>
-      </p>
-    </div>
-
-    <div class="mt-6 bg-slate-800 p-6 rounded-xl">
-      <h2 class="text-2xl font-semibold mb-4">Mechanical Design</h2>
-
-      <p class="mt-3 text-base text-slate-300">
-        Parts were modelled in FreeCAD and printed in PLA using an Anycubic Kobra 2 printer. The 3D-printed
-        enclosure houses all the electronics and keeps the controls accessible to the player, though the
-        ergonomics leave room for improvement in future iterations.
-      </p>
-
-      <!-- 3D Models -->
-      <div class="mt-6">
-        <div class="flex items-center justify-between mb-3">
-          <span id="contador3d" class="text-slate-400 text-sm">1 / 11</span>
-
-          <div class="flex gap-2">
-            <button onclick="mover3d(-1)"
-              class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">
-              ← Previous
-            </button>
-
-            <button onclick="mover3d(1)"
-              class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">
-              Next →
-            </button>
+          <div class="mt-6 flex gap-3 flex-wrap">
+            <img src="/projects/gaita_electronica/Arduino_uno.png" onclick="abrirModal(this.src)"
+              class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            <img src="/projects/gaita_electronica/mpr.png" onclick="abrirModal(this.src)"
+              class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            <img src="/projects/gaita_electronica/encoder.png" onclick="abrirModal(this.src)"
+              class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            <img src="/projects/gaita_electronica/lcd.png" onclick="abrirModal(this.src)"
+              class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            <img src="/projects/gaita_electronica/presion.png" onclick="abrirModal(this.src)"
+              class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            <img src="/projects/gaita_electronica/pulsadores.png" onclick="abrirModal(this.src)"
+              class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            <img src="/projects/gaita_electronica/pcb.png" onclick="abrirModal(this.src)"
+              class="h-28 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
           </div>
         </div>
 
-        <div class="border border-slate-700 rounded-xl overflow-hidden">
-          <canvas id="canvas3d" class="w-full" style="height: 500px;"></canvas>
+        <!-- Software -->
+        <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+          <h2 class="text-2xl font-semibold mb-4">Software</h2>
 
-          <div class="px-4 py-3 flex items-center justify-between">
-            <p id="nombre3d" class="text-sm font-medium">boca_fol</p>
-            <p class="text-xs text-slate-500">
-              Click and drag to rotate · Scroll to zoom
-            </p>
+          <p class="text-base text-slate-300">
+            The microcontroller was programmed in Arduino IDE using C++. MIDI communication was handled via USB
+            using Hairless MIDI Serial and LoopMIDI. Between those two softwares, I can translate the USB-serial
+            messages emmited by the Arduino into the baud rate and format expected by the MIDI protocol, and route
+            them to the synthesizer.<br><br>
+
+            The synthesizer used for sound generation was Universal Piper,
+            a standalone bagpipe synthesizer with a library of 16 different bagpipe types including the Galician
+            bagpipe besides others like the Scottish or Irish, configurable via MIDI Control Change messages.
+          </p>
+
+          <div class="mt-6 flex gap-3 flex-wrap">
+            <img src="/projects/gaita_electronica/serial-midi.png" onclick="abrirModal(this.src)"
+              class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            <img src="/projects/gaita_electronica/universal_piper.png" onclick="abrirModal(this.src)"
+              class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Video -->
-    <div class="mt-6 bg-slate-800 p-6 rounded-xl">
-      <h2 class="text-2xl font-semibold mb-4">Demo Video</h2>
-      <div class="rounded-xl overflow-hidden aspect-video">
-        <iframe src="https://www.youtube.com/embed/9ZNCx_jy5ZM?si=10EmcQu5l8V32Gcf" class="w-full h-full"
-          allowfullscreen title="MIDI Electronic Bagpipe">
-        </iframe>
-      </div>
-    </div>
+        <!-- Mechanical Design -->
+        <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+          <h2 class="text-2xl font-semibold mb-4">Mechanical Design</h2>
 
-    <!-- Technical Drawings -->
-    <div class="mt-6 bg-slate-800 p-6 rounded-xl">
-      <h2 class="text-2xl font-semibold mb-4">Schematics</h2>
+          <p class="mt-3 text-base text-slate-300">
+            Parts were modelled in FreeCAD and printed in PLA using an Anycubic Kobra 2 printer. The 3D-printed
+            enclosure houses all the electronics and keeps the controls accessible to the player, though the
+            ergonomics leave room for improvement in future iterations.
+          </p>
 
-      <div class="flex items-center justify-between mb-3">
-        <span id="contador" class="text-slate-400 text-sm">1 / 6</span>
-        <div class="flex gap-2">
-          <button onclick="mover(-1)" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">←
-            Previous</button>
-          <button onclick="mover(1)"
-            class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">Next →</button>
+          <!-- 3D Models -->
+          <div class="mt-6">
+            <div class="flex items-center justify-between mb-3">
+              <span id="contador3d" class="text-slate-400 text-sm">1 / 11</span>
+
+              <div class="flex gap-2">
+                <button onclick="mover3d(-1)"
+                  class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">
+                  ← Previous
+                </button>
+
+                <button onclick="mover3d(1)"
+                  class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">
+                  Next →
+                </button>
+              </div>
+            </div>
+
+            <div class="border border-slate-700 rounded-xl overflow-hidden">
+              <canvas id="canvas3d" class="w-full" style="height: 500px;"></canvas>
+
+              <div class="px-4 py-3 flex items-center justify-between">
+                <p id="nombre3d" class="text-sm font-medium">boca_fol</p>
+                <p class="text-xs text-slate-500">
+                  Click and drag to rotate · Scroll to zoom
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video -->
+        <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+          <h2 class="text-2xl font-semibold mb-4">Demo Video</h2>
+          <div class="rounded-xl overflow-hidden aspect-video">
+            <iframe src="https://www.youtube.com/embed/9ZNCx_jy5ZM?si=10EmcQu5l8V32Gcf" class="w-full h-full"
+              allowfullscreen title="MIDI Electronic Bagpipe">
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Schematics -->
+        <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+          <h2 class="text-2xl font-semibold mb-4">Schematics</h2>
+
+          <div class="flex items-center justify-between mb-3">
+            <span id="contador" class="text-slate-400 text-sm">1 / 6</span>
+            <div class="flex gap-2">
+              <button onclick="mover(-1)" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">← Previous</button>
+              <button onclick="mover(1)" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">Next →</button>
+            </div>
+          </div>
+
+          <div class="border border-slate-700 rounded-xl overflow-hidden">
+            <img id="visor" src="/projects/gaita_electronica/plano1.jpg" class="w-full object-contain"
+              style="max-height: 80vh;" alt="Drawing 1">
+            <div class="px-4 py-3 flex items-center justify-between">
+              <p id="nombre" class="text-sm font-medium">Drawing 1</p>
+              <a id="descarga" href="/projects/gaita_electronica/plano1.jpg" download
+                class="text-xs px-3 py-1 bg-blue-600 hover:bg-blue-500 rounded-lg transition">↓ Download</a>
+            </div>
+          </div>
+        </div>
+
         </div>
       </div>
 
-      <div class="border border-slate-700 rounded-xl overflow-hidden">
-        <img id="visor" src="/projects/gaita_electronica/plano1.jpg" class="w-full object-contain"
-          style="max-height: 80vh;" alt="Drawing 1">
-        <div class="px-4 py-3 flex items-center justify-between">
-          <p id="nombre" class="text-sm font-medium">Drawing 1</p>
-          <a id="descarga" href="/projects/gaita_electronica/plano1.jpg" download
-            class="text-xs px-3 py-1 bg-blue-600 hover:bg-blue-500 rounded-lg transition">↓ Download</a>
-        </div>
-      </div>
-    </div>
+    </main>
 
   </div>
 
@@ -276,6 +299,21 @@
   </div>
 
   <script>
+    function toggleProjects() {
+      const menu = document.getElementById("projects-menu");
+      const arrow = document.getElementById("arrow");
+      menu.classList.toggle("open");
+      arrow.textContent = menu.classList.contains("open") ? "▴" : "▾";
+    }
+
+    // Abrir el dropdown al cargar, ya que estamos en un proyecto
+    window.addEventListener('DOMContentLoaded', () => {
+      const menu = document.getElementById("projects-menu");
+      const arrow = document.getElementById("arrow");
+      menu.classList.add("open");
+      arrow.textContent = "▴";
+    });
+
     function abrirModal(src) {
       document.getElementById('modal-img').src = src;
       document.getElementById('modal').classList.remove('hidden');
@@ -380,7 +418,8 @@
           color: 0xd1d5db,
           metalness: 0.2,
           roughness: 0.6
-        }); meshActual = new THREE.Mesh(geometry, material);
+        });
+        meshActual = new THREE.Mesh(geometry, material);
         scene.add(meshActual);
       });
     }
