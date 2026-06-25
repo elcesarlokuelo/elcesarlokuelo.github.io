@@ -159,8 +159,10 @@
             <h2 class="text-2xl font-semibold mb-4">Buffer Station</h2>
 
             <p class="text-base text-slate-300">
-              This is
-              The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
+              The objective of this example is to buffer and separate up to five boxes, using a series of conveyors and sensors. 
+              For this example I used CODESYS and OPC-UA, using the simulated PLC as an OPC-UA server to communicate with Factory IO acting as a client.
+              The PLC program is written in Ladder logic. Additionally I created a simple HMI to visualize the status of the system and control the operation
+              when the manual mode is selected int the rotative switch.
             </p>
           </div>
 
@@ -216,189 +218,89 @@
             </div>
           </div>
 
-        <!-- From A to B -->
-        <div class="mt-6 bg-slate-800 p-6 rounded-xl">
-          <h2 class="text-2xl font-semibold mb-4">From A to B</h2>
-          <p class="text-base text-slate-300">
-            The objective of this example is to transport a box until it reaches a sensor,
-            using a conveyor belt and a retroreflective sensor.
-            For this example I used CODESYS and Modbus TCP to communicate the simulated PLC
-            with Factory IO. The PLC program is written in Ladder logic.
-            First, we must define the necessary I/O as global variables. In this case we have
-            a digital output for the conveyor belt and a digital input for the sensor.
-          </p>
-          <div class="mt-4 flex gap-3 flex-wrap justify-center">
-            <img src="/projects/factoryIO_examples/from_a_to_b/1.png" onclick="abrirModal(this.src)"
-              class="h-24 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-          </div>
-          <p class="text-base text-slate-300 mt-4">
-            Then we create a simple Ladder logic program that turns on the conveyor belt when
-            the sensor is not activated, and turns it off when it is, keeping in mind that the
-            sensor is NC.
-            Finally, we map the I/O variables to the corresponding addresses in the Modbus TCP
-            server and run the simulation in Factory IO.
-          </p>
-          <div class="mt-4 flex gap-3 flex-wrap justify-center">
-            <img src="/projects/factoryIO_examples/from_a_to_b/2.png" onclick="abrirModal(this.src)"
-              class="h-40 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-          </div>
-          <!-- Video -->
+          <!-- From A to B -->
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
-            <div class="rounded-xl overflow-hidden aspect-video">
-              <iframe src="https://www.youtube.com/embed/kEilJSGBqvc?si=LRpSsEHMNE2kKBH_" class="w-full h-full"
-                allowfullscreen title="MIDI Electronic Bagpipe">
-              </iframe>
+            <h2 class="text-2xl font-semibold mb-4">From A to B</h2>
+            <p class="text-base text-slate-300">
+              The objective of this example is to transport a box until it reaches a sensor,
+              using a conveyor belt and a retroreflective sensor.
+              For this example I used CODESYS and Modbus TCP to communicate the simulated PLC
+              with Factory IO. The PLC program is written in Ladder logic.
+              First, we must define the necessary I/O as global variables. In this case we have
+              a digital output for the conveyor belt and a digital input for the sensor.
+            </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/from_a_to_b/1.png" onclick="abrirModal(this.src)"
+                class="h-24 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
             </div>
-          </div>
-        </div>
-
-        <!-- Level Control -->
-        <div class="mt-6 bg-slate-800 p-6 rounded-xl">
-          <h2 class="text-2xl font-semibold mb-4">Level Control</h2>
-          <p class="text-base text-slate-300">
-            The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
-          </p>
-        </div>
-
-        <!-- Palletizer -->
-        <div class="mt-6 bg-slate-800 p-6 rounded-xl">
-          <h2 class="text-2xl font-semibold mb-4">Palletizer</h2>
-          <p class="text-base text-slate-300">
-            This is
-            The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
-          </p>
-        </div>
-
-        <!-- Pick And Place XYZ -->
-        <div class="mt-6 bg-slate-800 p-6 rounded-xl">
-          <h2 class="text-2xl font-semibold mb-4">Pick And Place XYZ</h2>
-          <p class="text-base text-slate-300">
-            This is
-            The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
-          </p>
-        </div>
-
-        <!-- Queue of items (Counters) -->
-        <div class="mt-6 bg-slate-800 p-6 rounded-xl">
-          <h2 class="text-2xl font-semibold mb-4">Queue of items (Counters)</h2>
-          <p class="text-base text-slate-300">
-            This is
-            The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
-          </p>
-        </div>
-
-        <!-- Sorting by Weight -->
-        <div class="mt-6 bg-slate-800 p-6 rounded-xl">
-          <h2 class="text-2xl font-semibold mb-4">Filling Tank (Timers)</h2>
-          <p class="text-base text-slate-300">
-            This is
-            The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
-          </p>
-        </div>
-
-        <!-- Software -->
-        <div class="mt-6 bg-slate-800 p-6 rounded-xl">
-          <h2 class="text-2xl font-semibold mb-4">Software</h2>
-
-          <p class="text-base text-slate-300">
-            The microcontroller was programmed in Arduino IDE using C++. MIDI communication was handled via USB
-            using Hairless MIDI Serial and LoopMIDI. Between those two softwares, I can translate the USB-serial
-            messages emmited by the Arduino into the baud rate and format expected by the MIDI protocol, and route
-            them to the synthesizer.<br><br>
-
-            The synthesizer used for sound generation was Universal Piper,
-            a standalone bagpipe synthesizer with a library of 16 different bagpipe types including the Galician
-            bagpipe besides others like the Scottish or Irish, configurable via MIDI Control Change messages.
-          </p>
-
-          <div class="mt-6 flex gap-3 flex-wrap">
-            <img src="/projects/gaita_electronica/serial-midi.png" onclick="abrirModal(this.src)"
-              class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-            <img src="/projects/gaita_electronica/universal_piper.png" onclick="abrirModal(this.src)"
-              class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-          </div>
-        </div>
-
-        <!-- Mechanical Design -->
-        <div class="mt-6 bg-slate-800 p-6 rounded-xl">
-          <h2 class="text-2xl font-semibold mb-4">Mechanical Design</h2>
-
-          <p class="mt-3 text-base text-slate-300">
-            Parts were modelled in FreeCAD and printed in PLA using an Anycubic Kobra 2 printer. The 3D-printed
-            enclosure houses all the electronics and keeps the controls accessible to the player, though the
-            ergonomics leave room for improvement in future iterations.
-          </p>
-
-          <!-- 3D Models -->
-          <div class="mt-6">
-            <div class="flex items-center justify-between mb-3">
-              <span id="contador3d" class="text-slate-400 text-sm">1 / 11</span>
-
-              <div class="flex gap-2">
-                <button onclick="mover3d(-1)"
-                  class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">
-                  ← Previous
-                </button>
-
-                <button onclick="mover3d(1)"
-                  class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">
-                  Next →
-                </button>
-              </div>
+            <p class="text-base text-slate-300 mt-4">
+              Then we create a simple Ladder logic program that turns on the conveyor belt when
+              the sensor is not activated, and turns it off when it is, keeping in mind that the
+              sensor is NC.
+              Finally, we map the I/O variables to the corresponding addresses in the Modbus TCP
+              server and run the simulation in Factory IO.
+            </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/from_a_to_b/2.png" onclick="abrirModal(this.src)"
+                class="h-40 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
             </div>
-
-            <div class="border border-slate-700 rounded-xl overflow-hidden">
-              <canvas id="canvas3d" class="w-full" style="height: 500px;"></canvas>
-
-              <div class="px-4 py-3 flex items-center justify-between">
-                <p id="nombre3d" class="text-sm font-medium">boca_fol</p>
-                <p class="text-xs text-slate-500">
-                  Click and drag to rotate · Scroll to zoom
-                </p>
+            <!-- Video -->
+            <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+              <div class="rounded-xl overflow-hidden aspect-video">
+                <iframe src="https://www.youtube.com/embed/kEilJSGBqvc?si=LRpSsEHMNE2kKBH_" class="w-full h-full"
+                  allowfullscreen title="MIDI Electronic Bagpipe">
+                </iframe>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Video -->
-        <div class="mt-6 bg-slate-800 p-6 rounded-xl">
-          <h2 class="text-2xl font-semibold mb-4">Demo Video</h2>
-          <div class="rounded-xl overflow-hidden aspect-video">
-            <iframe src="https://www.youtube.com/embed/9ZNCx_jy5ZM?si=10EmcQu5l8V32Gcf" class="w-full h-full"
-              allowfullscreen title="MIDI Electronic Bagpipe">
-            </iframe>
-          </div>
-        </div>
-
-        <!-- Schematics -->
-        <div class="mt-6 bg-slate-800 p-6 rounded-xl">
-          <h2 class="text-2xl font-semibold mb-4">Schematics</h2>
-
-          <div class="flex items-center justify-between mb-3">
-            <span id="contador" class="text-slate-400 text-sm">1 / 6</span>
-            <div class="flex gap-2">
-              <button onclick="mover(-1)"
-                class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">← Previous</button>
-              <button onclick="mover(1)"
-                class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">Next →</button>
-            </div>
+          <!-- Level Control -->
+          <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+            <h2 class="text-2xl font-semibold mb-4">Level Control</h2>
+            <p class="text-base text-slate-300">
+              The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
+            </p>
           </div>
 
-          <div class="border border-slate-700 rounded-xl overflow-hidden">
-            <img id="visor" src="/projects/gaita_electronica/plano1.jpg" class="w-full object-contain"
-              style="max-height: 80vh;" alt="Drawing 1">
-            <div class="px-4 py-3 flex items-center justify-between">
-              <p id="nombre" class="text-sm font-medium">Drawing 1</p>
-              <a id="descarga" href="/projects/gaita_electronica/plano1.jpg" download
-                class="text-xs px-3 py-1 bg-blue-600 hover:bg-blue-500 rounded-lg transition">↓ Download</a>
-            </div>
+          <!-- Palletizer -->
+          <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+            <h2 class="text-2xl font-semibold mb-4">Palletizer</h2>
+            <p class="text-base text-slate-300">
+              This is
+              The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
+            </p>
+          </div>
+
+          <!-- Pick And Place XYZ -->
+          <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+            <h2 class="text-2xl font-semibold mb-4">Pick And Place XYZ</h2>
+            <p class="text-base text-slate-300">
+              This is
+              The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
+            </p>
+          </div>
+
+          <!-- Queue of items (Counters) -->
+          <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+            <h2 class="text-2xl font-semibold mb-4">Queue of items (Counters)</h2>
+            <p class="text-base text-slate-300">
+              This is
+              The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
+            </p>
+          </div>
+
+          <!-- Sorting by Weight -->
+          <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+            <h2 class="text-2xl font-semibold mb-4">Filling Tank (Timers)</h2>
+            <p class="text-base text-slate-300">
+              This is
+              The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
+            </p>
           </div>
         </div>
-
       </div>
-  </div>
 
-  </main>
+    </main>
 
   </div>
 
