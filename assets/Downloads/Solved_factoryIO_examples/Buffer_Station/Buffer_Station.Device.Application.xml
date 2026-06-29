@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Symbolconfiguration xmlns="http://www.3s-software.com/schemas/Symbolconfiguration.xsd">
+  <Header>
+    <Version>3.5.14.0</Version>
+    <SymbolConfigObject version="4.7.0.0" runtimeid="3.5.21.40" libversion="4.6.0.0" compiler="3.5.21.30" lmm="3.5.21.30" profile="CODESYS V3.5 SP21 Patch 3+" settings="SupportOPCUA, LayoutCalculator=OptimizedClientSideLayoutCalculator" />
+    <ProjectInfo name="Buffer_Station" devicename="Device" appname="Application" />
+  </Header>
+  <TypeList>
+    <TypeSimple name="T_BOOL" size="1" swapsize="0" typeclass="Bool" iecname="BOOL" />
+    <TypeSimple name="T_REAL" size="4" swapsize="4" typeclass="Real" iecname="REAL" />
+    <TypeSimple name="T_WORD" size="2" swapsize="2" typeclass="Word" iecname="WORD" />
+  </TypeList>
+  <NodeList>
+    <Node name="Application">
+      <Node name="GVL_buffer_station">
+        <Node name="At_buffer_entry" type="T_BOOL" access="ReadWrite" />
+        <Node name="At_buffer_exit" type="T_BOOL" access="ReadWrite" />
+        <Node name="At_exit" type="T_BOOL" access="ReadWrite" />
+        <Node name="Auto" type="T_BOOL" access="ReadWrite" />
+        <Node name="Buffer_conveyor" type="T_REAL" access="ReadWrite" />
+        <Node name="Buffer_vel" type="T_REAL" access="ReadWrite" />
+        <Node name="Counter" type="T_WORD" access="ReadWrite" />
+        <Node name="Emergency_stop" type="T_BOOL" access="ReadWrite" />
+        <Node name="Exit_conveyor" type="T_REAL" access="ReadWrite" />
+        <Node name="Manual" type="T_BOOL" access="ReadWrite" />
+        <Node name="Reset" type="T_BOOL" access="ReadWrite" />
+        <Node name="Reset_light" type="T_BOOL" access="ReadWrite" />
+        <Node name="Start" type="T_BOOL" access="ReadWrite" />
+        <Node name="Start_ligth" type="T_BOOL" access="ReadWrite" />
+        <Node name="Stop" type="T_BOOL" access="ReadWrite" />
+        <Node name="Stop_blade" type="T_BOOL" access="ReadWrite" />
+        <Node name="Stop_light" type="T_BOOL" access="ReadWrite" />
+      </Node>
+    </Node>
+  </NodeList>
+</Symbolconfiguration>
