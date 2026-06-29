@@ -110,17 +110,19 @@
             </p>
 
             <p class="mt-3 text-base text-slate-300">
-              All project content is available in the repository:
-              <a href="https://github.com/elcesarlokuelo/Gaita_electronica_MIDI" target="_blank" class="text-blue-400">
-                https://github.com/elcesarlokuelo/Gaita_electronica_MIDI
+              All factory IO files and project resources are available in the repository:
+              <a href="https://github.com/elcesarlokuelo/elcesarlokuelo.github.io/tree/main/assets/Downloads/Solved_factoryIO_examples"
+                target="_blank" class="text-blue-400">
+                https://github.com/elcesarlokuelo/elcesarlokuelo.github.io/tree/main/assets/Downloads/Solved_factoryIO_examples
               </a>
             </p>
 
             <p class="mt-3 text-base text-slate-300">
               Each example will include a description of the problem, the implemented solution in the chosen PLC code
-              language,
-              and the corresponding software and communication protocol used. For all the examples there will be a video
-              demonstration of the solution in action within the Factory IO simulation environment.
+              language, and the corresponding software and communication protocol used. For all the examples there will
+              be a video
+              demonstration of the solution in action within the Factory IO simulation environment, and a link for
+              downloading the project files.
             </p>
           </div>
 
@@ -159,12 +161,75 @@
             <h2 class="text-2xl font-semibold mb-4">Buffer Station</h2>
 
             <p class="text-base text-slate-300">
-              The objective of this example is to buffer and separate up to five boxes, using a series of conveyors and sensors. 
-              For this example I used CODESYS and OPC-UA, using the simulated PLC as an OPC-UA server to communicate with Factory IO acting as a client.
-              The PLC program is written in Ladder logic. Additionally I created a simple HMI to visualize the status of the system and control the operation
+              The objective of this example is to buffer and separate up to five boxes, using a series of conveyors and
+              sensors.
+              For this example I used CODESYS and OPC-UA, using the simulated PLC as an OPC-UA server to communicate
+              with Factory IO acting as a client.
+              The PLC program is written in Ladder logic. Additionally I created a simple HMI to visualize the status of
+              the system and control the operation
               when the manual mode is selected.
             </p>
-            
+            <p class="text-base text-slate-300">
+              Firstly we create the global variables and a symbol configuration object to define the I/Os and expose
+              them
+              via OPC-UA.
+              In this case we have 8 digital inputs and a REAL input for the potentiometer used for the conveyors
+              velocity.
+              We also define 7 outputs for the analog conveyors, displays, button lights and the stop blade.
+            </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/buffer_station/1.png" onclick="abrirModal(this.src)"
+                class="h-64 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+            <p class="text-base text-slate-300">
+              I used the PLC_PRG POU to organize the program modes, and the general logic of the emergency, start, reset
+              and stop buttons.
+              In the HMI I created there are the same controls as in the panel in Factory IO, and also the manual
+              controls of the outputs.
+              The idea is that the operator can control the process manually from the HMI, or let the PLC control the
+              process automatically using the "physical" control panel.
+              The mode can only be changed via the rotary switch on the physical panel,
+              avoiding control source conflicts between the HMI and the simulation.
+            </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/buffer_station/2.png" onclick="abrirModal(this.src)"
+                class="h-64 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+            <p class="text-base text-slate-300">
+              The manual mode consist only in the direct control of the outputs and the conveyor velocity. Also i can
+              duplicate the start, stop and reset buttons in the HMI
+              because they are momentary, and cant conflict with the physical buttons in the panel.
+            </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/buffer_station/4.png" onclick="abrirModal(this.src)"
+                class="h-64 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+              <img src="/projects/factoryIO_examples/buffer_station/6.png" onclick="abrirModal(this.src)"
+                class="h-64 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+            <p class="text-base text-slate-300">
+              The automatic mode does batches of three boxes. The operator can start, reset or stop the process in the
+              physical panel or the HMI,
+              but can't adjust the conveyor velocity or control the outputs directly from the HMI.
+            </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/buffer_station/5.png" onclick="abrirModal(this.src)"
+                class="h-64 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+            <!-- Video -->
+            <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+              <div class="rounded-xl overflow-hidden aspect-video">
+                <iframe src="https://www.youtube.com/embed/8EloZtWX_z4?si=Grhhh5mHoy7Gs6gu" class="w-full h-full"
+                  allowfullscreen title="MIDI Electronic Bagpipe">
+                </iframe>
+              </div>
+            </div>
+            <!-- Dentro del div del ejemplo, después del vídeo -->
+            <div class="mt-4 flex gap-3">
+              <a href="../assets/downloads/Solved_factoryIO_examples/Buffer_Station.zip" download
+                class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
+                ⬇ Download Project Files
+              </a>
+            </div>
           </div>
 
           <!-- Converge Station -->
@@ -217,6 +282,13 @@
                 </iframe>
               </div>
             </div>
+            <!-- Dentro del div del ejemplo, después del vídeo -->
+            <div class="mt-4 flex gap-3">
+              <a href="../assets/downloads/Solved_factoryIO_examples/Filling_Tank_(Timers).zip" download
+                class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
+                ⬇ Download Project Files
+              </a>
+            </div>
           </div>
 
           <!-- From A to B -->
@@ -252,6 +324,13 @@
                   allowfullscreen title="MIDI Electronic Bagpipe">
                 </iframe>
               </div>
+            </div>
+            <!-- Dentro del div del ejemplo, después del vídeo -->
+            <div class="mt-4 flex gap-3">
+              <a href="../assets/downloads/Solved_factoryIO_examples/From_A_to_B.zip" download
+                class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
+                ⬇ Download Project Files
+              </a>
             </div>
           </div>
 
