@@ -129,11 +129,35 @@
           <!-- Assembler -->
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
             <h2 class="text-2xl font-semibold mb-4">Assembler</h2>
-
             <p class="text-base text-slate-300">
-              This
-              The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
+              The objective in this scene is to assemble parts made of lids and bases using a two-axis pick and place.
+              For this example
+              I used CODESYS and Modbus TCP to communicate with Factory IO. The PLC program is written in Ladder logic,
+              using a finite state
+              machine to control the pick and place operation.
             </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/assembler/1.png" onclick="abrirModal(this.src)"
+                class="h-64 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+              <img src="/projects/factoryIO_examples/assembler/3.png" onclick="abrirModal(this.src)"
+                class="h-64 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+
+            <!-- Video -->
+            <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+              <div class="rounded-xl overflow-hidden aspect-video">
+                <iframe src="https://www.youtube.com/embed/tEpBwUw_S-A?si=NopdsrkUTs1D30b9" class="w-full h-full"
+                  allowfullscreen title="MIDI Electronic Bagpipe">
+                </iframe>
+              </div>
+            </div>
+            <!-- Dentro del div del ejemplo, después del vídeo -->
+            <div class="mt-4 flex gap-3">
+              <a href="../assets/downloads/Solved_factoryIO_examples/Buffer_Station.zip" download
+                class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
+                ⬇ Download Project Files
+              </a>
+            </div>
           </div>
 
           <!-- Assembler (Analog)-->
@@ -218,7 +242,7 @@
             <!-- Video -->
             <div class="mt-6 bg-slate-800 p-6 rounded-xl">
               <div class="rounded-xl overflow-hidden aspect-video">
-                <iframe src="https://www.youtube.com/embed/8EloZtWX_z4?si=Grhhh5mHoy7Gs6gu" class="w-full h-full"
+                <iframe src="https://www.youtube.com/embed/tEpBwUw_S-A?si=NopdsrkUTs1D30b9" class="w-full h-full"
                   allowfullscreen title="MIDI Electronic Bagpipe">
                 </iframe>
               </div>
@@ -338,8 +362,66 @@
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
             <h2 class="text-2xl font-semibold mb-4">Level Control</h2>
             <p class="text-base text-slate-300">
-              The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
+              The objective of this example is to control the liquid level of a tank using a
+              Proportional-Integral-Derivative (PID) controller. I used CODESYS as a SoftPLC and
+              Modbus TCP to communicate with Factory IO. The program combines Ladder Diagram (LD)
+              for the control logic (Start/Stop/Reset and interlocking) with Structured Text (ST)
+              for scaling and PID configuration.
             </p>
+            <p class="text-base text-slate-300 mt-4">
+              A latching circuit handles the Start/Stop logic: pressing Start
+              energizes the "Marcha" coil, which keeps itself active through its own contact
+              until Stop is pressed. This "Marcha" bit enables the rest of the process, including
+              the PID block and the fill valve.
+            </p>
+            <div class="mt-6 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/level_control/1.png" onclick="abrirModal(this.src)"
+                class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+              <img src="/projects/factoryIO_examples/level_control/2.png" onclick="abrirModal(this.src)"
+                class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+            <p class="text-base text-slate-300 mt-4">
+              Two ST routines handle the scaling: the setpoint coming from a potentiometer and the
+              process value coming from the level sensor are both rescaled from the raw analog
+              range (0–1000) to the 0–300 mm range of the tank. Once the system is running, the PID
+              output is converted with TO_WORD and written to the fill valve through a MOVE instruction.
+            </p>
+            <div class="mt-6 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/level_control/4.png" onclick="abrirModal(this.src)"
+                class="h-56 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+              <img src="/projects/factoryIO_examples/level_control/3.png" onclick="abrirModal(this.src)"
+                class="h-20 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+            <p class="text-base text-slate-300 mt-4">
+              Communication between CODESYS and Factory IO is done through Modbus TCP, mapping
+              Holding Registers for the level sensor and setpoint, Input Registers for the valve
+              commands and PID values, and discrete Coils/Inputs for the Start/Stop/Reset buttons
+              and their indicator lights.
+            </p>
+
+            <div class="mt-6 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/level_control/5.png" onclick="abrirModal(this.src)"
+                class="h-52 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+              <img src="/projects/factoryIO_examples/level_control/6.png" onclick="abrirModal(this.src)"
+                class="h-52 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+              <img src="/projects/factoryIO_examples/level_control/7.png" onclick="abrirModal(this.src)"
+                class="h-52 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+
+            <!-- Video -->
+            <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+              <div class="rounded-xl overflow-hidden aspect-video">
+                <iframe src="https://www.youtube.com/embed/bJmT7NBe-Ko?si=at7viZ70vwz1dzDT" class="w-full h-full"
+                  allowfullscreen title="Level Control PID">
+                </iframe>
+              </div>
+            </div>
+            <div class="mt-4 flex gap-3">
+              <a href="../assets/downloads/Solved_factoryIO_examples/Level_Control.zip" download
+                class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
+                ⬇ Download Project Files
+              </a>
+            </div>
           </div>
 
           <!-- Palletizer -->
