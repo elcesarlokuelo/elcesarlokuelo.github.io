@@ -126,7 +126,7 @@
             </p>
           </div>
 
-          <!-- Assembler -->
+          <!-- #region Assembler -->
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
             <h2 class="text-2xl font-semibold mb-4">Assembler</h2>
             <p class="text-base text-slate-300">
@@ -136,39 +136,124 @@
               using a finite state
               machine to control the pick and place operation.
             </p>
+            <p class="text-base text-slate-300">
+              First we define the necessary I/O as global variables, looking at the Factory IO driver configuration. We
+              also have to
+              link the variables to the corresponding Modbus addresses in the PLC configuration, in the holding
+              registers, coils or discrete inputs.
+            </p>
             <div class="mt-4 flex gap-3 flex-wrap justify-center">
               <img src="/projects/factoryIO_examples/assembler/1.png" onclick="abrirModal(this.src)"
-                class="h-64 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
-              <img src="/projects/factoryIO_examples/assembler/3.png" onclick="abrirModal(this.src)"
-                class="h-64 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+                class="h-52 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+              <img src="/projects/factoryIO_examples/assembler/2.png" onclick="abrirModal(this.src)"
+                class="h-52 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+              <img src="/projects/factoryIO_examples/assembler/8.png" onclick="abrirModal(this.src)"
+                class="h-52 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
             </div>
-
+            <p class="text-base text-slate-300">
+              The control logic is implemented as a state machine using Set/Reset coils, where each
+              state (E0 to E13) represents a step in the assembly sequence. Pressing Start initiates
+              two parallel branches: one state machine for the lids conveyor and another for the
+              bases conveyor, since both parts are handled independently until they reach the
+              clamping station. Each state is activated by a condition (a sensor detecting a part,
+              a clamp closing, an axis finishing its move) and immediately resets the previous state,
+              ensuring only one state is active at a time per branch. Timers are used where there is
+              no direct sensor feedback, such as during the Z-axis movement or the pick and place
+              cycle. The sequence finishes by counting the finished pieces with a falling-edge
+              triggered counter and returning the system to its initial states, ready for a new cycle.
+            </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/assembler/ladder_full.png" onclick="abrirModal(this.src)"
+                class="max-h-[2500px] w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
             <!-- Video -->
             <div class="mt-6 bg-slate-800 p-6 rounded-xl">
               <div class="rounded-xl overflow-hidden aspect-video">
-                <iframe src="https://www.youtube.com/embed/tEpBwUw_S-A?si=NopdsrkUTs1D30b9" class="w-full h-full"
+                <iframe src="https://www.youtube.com/embed/tqiQF7ZUC9k?si=hWcXtPa2o7ZRu_ak" class="w-full h-full"
                   allowfullscreen title="MIDI Electronic Bagpipe">
                 </iframe>
               </div>
             </div>
             <!-- Dentro del div del ejemplo, después del vídeo -->
             <div class="mt-4 flex gap-3">
-              <a href="../assets/downloads/Solved_factoryIO_examples/Buffer_Station.zip" download
+              <a href="../assets/downloads/Solved_factoryIO_examples/Assembler.zip" download
                 class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
                 ⬇ Download Project Files
               </a>
             </div>
           </div>
+          <!-- #endregion -->
 
-          <!-- Assembler (Analog)-->
+          <!-- #region Assembler (Analog)-->
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
             <h2 class="text-2xl font-semibold mb-4">Assembler (Analog)</h2>
 
             <p class="text-base text-slate-300">
-              This is
-              The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
+              This example is very similar to the previous one, but in this case we use analog inputs and outputs to
+              control the pick and place axes and positions. I used Codesys and Modbus TCP to communicate with Factory
+              IO.
+              The PLC program is written in Ladder logic, using a finite state machine to control the pick and place
+              operation.
             </p>
+            <p class="text-base text-slate-300">
+              For this example i used the CADe_SIMU software to create a grafcet diagram of the process, making it
+              easier to then translate it into the PLC ladder program.
+            </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/assembler_(analog)/5.png" onclick="abrirModal(this.src)"
+                class="h-64 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+            <p class="text-base text-slate-300">
+              We also have to define the necessary I/O as global variables, looking at the Factory IO driver. Then we
+              have to
+              link the variables to the corresponding Modbus addresses in the PLC configuration, in the holding
+              registers, coils or discrete inputs.
+            </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/assembler_(analog)/1.png" onclick="abrirModal(this.src)"
+                class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+              <img src="/projects/factoryIO_examples/assembler_(analog)/4.png" onclick="abrirModal(this.src)"
+                class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+            <p class="text-base text-slate-300">
+              I use 2 different functions to implement the toggle button logic for the stop push button and the counter
+              for the total finished pieces.
+            </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/assembler_(analog)/2.png" onclick="abrirModal(this.src)"
+                class="h-24 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+              <img src="/projects/factoryIO_examples/assembler_(analog)/3.png" onclick="abrirModal(this.src)"
+                class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+            <p class="text-base text-slate-300">
+              The program implements a finite state machine with three parallel branches: one tracks the lid sensor on
+              conveyor 1, another tracks the base sensor on conveyor 2, and the third controls the robotic arm's
+              movement (X/Z positioning, grabbing and releasing parts using position comparisons). State E0 acts as the
+              master reset, restarting all three branches when Start is pressed. At the end of the program, the states
+              are mapped to the physical outputs: conveyors, stop blades, and other station actuators.
+            </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/assembler_(analog)/assembler_full.png"
+                onclick="abrirModal(this.src)"
+                class="max-h-[2500px] w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+            <!-- Video -->
+            <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+              <div class="rounded-xl overflow-hidden aspect-video">
+                <iframe src="https://www.youtube.com/embed/vx-MxBAllWc?si=vLbkEvppNZ5GeXlk" class="w-full h-full"
+                  allowfullscreen title="MIDI Electronic Bagpipe">
+                </iframe>
+              </div>
+            </div>
+            <!-- Dentro del div del ejemplo, después del vídeo -->
+            <div class="mt-4 flex gap-3">
+              <a href="../assets/downloads/Solved_factoryIO_examples/Assembler_(Analog).zip" download
+                class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
+                ⬇ Download Project Files
+              </a>
+            </div>
           </div>
+          <!-- #endregion -->
 
           <!-- Automated Warehouse -->
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
@@ -179,8 +264,9 @@
               The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
             </p>
           </div>
+          <!-- #endregion -->
 
-          <!-- Buffer Station -->
+          <!-- #region Buffer Station -->
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
             <h2 class="text-2xl font-semibold mb-4">Buffer Station</h2>
 
@@ -255,8 +341,9 @@
               </a>
             </div>
           </div>
+          <!-- #endregion -->
 
-          <!-- Converge Station -->
+          <!-- #region Converge Station -->
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
             <h2 class="text-2xl font-semibold mb-4">Converge Station</h2>
 
@@ -265,8 +352,9 @@
               The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
             </p>
           </div>
+          <!-- #endregion -->
 
-          <!-- Filling Tank (Timers) -->
+          <!-- #region Filling Tank (Timers) -->
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
             <h2 class="text-2xl font-semibold mb-4">Filling Tank (Timers)</h2>
             <p class="text-base text-slate-300">
@@ -314,8 +402,9 @@
               </a>
             </div>
           </div>
+          <!-- #endregion -->
 
-          <!-- From A to B -->
+          <!-- #region From A to B -->
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
             <h2 class="text-2xl font-semibold mb-4">From A to B</h2>
             <p class="text-base text-slate-300">
@@ -357,8 +446,9 @@
               </a>
             </div>
           </div>
+          <!-- #endregion -->
 
-          <!-- Level Control -->
+          <!-- #region Level Control -->
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
             <h2 class="text-2xl font-semibold mb-4">Level Control</h2>
             <p class="text-base text-slate-300">
@@ -423,8 +513,9 @@
               </a>
             </div>
           </div>
+          <!-- #endregion -->
 
-          <!-- Palletizer -->
+          <!-- #region Palletizer -->
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
             <h2 class="text-2xl font-semibold mb-4">Palletizer</h2>
             <p class="text-base text-slate-300">
@@ -432,8 +523,9 @@
               The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
             </p>
           </div>
+          <!-- #endregion -->
 
-          <!-- Pick And Place XYZ -->
+          <!-- #region Pick And Place XYZ -->
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
             <h2 class="text-2xl font-semibold mb-4">Pick And Place XYZ</h2>
             <p class="text-base text-slate-300">
@@ -441,8 +533,9 @@
               The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
             </p>
           </div>
+          <!-- #endregion -->
 
-          <!-- Queue of items (Counters) -->
+          <!-- #region Queue of items (Counters) -->
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
             <h2 class="text-2xl font-semibold mb-4">Queue of items (Counters)</h2>
             <p class="text-base text-slate-300">
@@ -450,8 +543,9 @@
               The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
             </p>
           </div>
+          <!-- #endregion -->
 
-          <!-- Sorting by Weight -->
+          <!-- #region Sorting by Weight -->
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
             <h2 class="text-2xl font-semibold mb-4">Filling Tank (Timers)</h2>
             <p class="text-base text-slate-300">
@@ -459,6 +553,7 @@
               The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
             </p>
           </div>
+          <!-- #endregion -->
         </div>
       </div>
 
