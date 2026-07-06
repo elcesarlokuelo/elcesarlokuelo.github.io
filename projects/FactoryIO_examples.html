@@ -21,6 +21,11 @@
 </head>
 
 <body class="bg-slate-950 text-white">
+  <!-- Fondo desenfocado con parallax -->
+  <div class="fixed inset-0 -z-10 overflow-hidden">
+    <img id="bg-image" src="/assets/3.jpg" class="absolute top-0 left-0 w-full h-[160%] object-cover blur-sm scale-110">
+    <div class="absolute inset-0 bg-slate-950/40"></div>
+  </div>
 
   <div class="flex">
 
@@ -98,7 +103,7 @@
           </div>
 
           <h1 class="text-5xl font-bold mt-6">Factory IO Examples</h1>
-          <p class="text-slate-400 mt-4">Factory IO · PLC · Ladder · Codesys · TIA Portal </p>
+          <p class="text-slate-300 mt-4">Factory IO · PLC · Ladder · Codesys · TIA Portal </p>
 
           <!-- Descripción -->
           <div class="mt-10 bg-slate-800 p-6 rounded-xl">
@@ -170,7 +175,7 @@
             <div class="mt-6 bg-slate-800 p-6 rounded-xl">
               <div class="rounded-xl overflow-hidden aspect-video">
                 <iframe src="https://www.youtube.com/embed/tqiQF7ZUC9k?si=hWcXtPa2o7ZRu_ak" class="w-full h-full"
-                  allowfullscreen title="MIDI Electronic Bagpipe">
+                  allowfullscreen title="Assembler">
                 </iframe>
               </div>
             </div>
@@ -241,7 +246,7 @@
             <div class="mt-6 bg-slate-800 p-6 rounded-xl">
               <div class="rounded-xl overflow-hidden aspect-video">
                 <iframe src="https://www.youtube.com/embed/vx-MxBAllWc?si=vLbkEvppNZ5GeXlk" class="w-full h-full"
-                  allowfullscreen title="MIDI Electronic Bagpipe">
+                  allowfullscreen title="Assembler (Analog)">
                 </iframe>
               </div>
             </div>
@@ -258,11 +263,74 @@
           <!-- #region Automated Warehouse -->
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
             <h2 class="text-2xl font-semibold mb-4">Automated Warehouse</h2>
-
             <p class="text-base text-slate-300">
-              This is
-              The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
+              In this example you have to transport, store and retrieve boxes from a rack. For that you use the loading
+              and exit conveyors, and the stacker crane. For the PLC programming I used CODESYS with its simulated PLC
+              software CODESYS Control Win V3. This software-simulated PLC acts as an OPC-UA server that communicates
+              with Factory IO
+              and an Ignition Gateway as clients.
             </p>
+            <p class="text-base text-slate-300">
+              First I defined the global variables and a symbol configuration object to define the I/Os and expose them
+              via OPC-UA. Then I created two FBs to control the entry and exit conveyors, using simple logic.
+            </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/automated_warehouse/1.png" onclick="abrirModal(this.src)"
+                class="h-52 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+              <img src="/projects/factoryIO_examples/automated_warehouse/2.png" onclick="abrirModal(this.src)"
+                class="h-52 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+              <img src="/projects/factoryIO_examples/automated_warehouse/3.png" onclick="abrirModal(this.src)"
+                class="h-52 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+            <p class="text-base text-slate-300">
+              I also used an FC to control the button lights. The main program defines the general behavior of the
+              program, featuring a running state that self-latches when the Start button is pressed and can be
+              interrupted with the Stop NC button.
+            </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/automated_warehouse/4.png" onclick="abrirModal(this.src)"
+                class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+              <img src="/projects/factoryIO_examples/automated_warehouse/5.png" onclick="abrirModal(this.src)"
+                class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+            <p class="text-base text-slate-300">
+              The cycle program is implemented as a state machine, with each state representing a step in the process of
+              storing or retrieving a box. In some cases, timers are necessary because the PLC's scan cycle is much
+              faster than the physical response time of the actuators. For example, right after a motion command is
+              issued, the state machine may evaluate the transition condition before the movement sensor has had time to
+              activate — misinterpreting the sensor's inactive state as the motion having already finished, when in fact
+              it hasn't started yet. A timer ensures enough time has passed for the movement to genuinely begin (or
+              complete) before the state machine reacts to the sensor.
+            </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/automated_warehouse/ladder_logic_completo.png"
+                onclick="abrirModal(this.src)"
+                class="max-h-[3000px] w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+            <p class="text-base text-slate-300">
+              Finally, I created an HMI in Ignition to visualize the status of the rack, which positions are occupied,
+              which are free,
+              and the state of the process. This gateway connects to the simulated PLC via OPC-UA.
+            </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/automated_warehouse/12.png" onclick="abrirModal(this.src)"
+                class="h-96 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+            <!-- Video -->
+            <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+              <div class="rounded-xl overflow-hidden aspect-video">
+                <iframe src="https://www.youtube.com/embed/rg37ReYq1lA?si=dEA0t834Gs8zCLNZ" class="w-full h-full"
+                  allowfullscreen title="Automated Warehouse">
+                </iframe>
+              </div>
+            </div>
+            <!-- Dentro del div del ejemplo, después del vídeo -->
+            <div class="mt-4 flex gap-3">
+              <a href="../assets/downloads/Solved_factoryIO_examples/Automated_Warehouse.zip" download
+                class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
+                ⬇ Download Project Files
+              </a>
+            </div>
 
           </div>
           <!-- #endregion -->
@@ -330,7 +398,7 @@
             <div class="mt-6 bg-slate-800 p-6 rounded-xl">
               <div class="rounded-xl overflow-hidden aspect-video">
                 <iframe src="https://www.youtube.com/embed/tEpBwUw_S-A?si=NopdsrkUTs1D30b9" class="w-full h-full"
-                  allowfullscreen title="MIDI Electronic Bagpipe">
+                  allowfullscreen title="Buffer Station">
                 </iframe>
               </div>
             </div>
@@ -391,7 +459,7 @@
             <div class="mt-6 bg-slate-800 p-6 rounded-xl">
               <div class="rounded-xl overflow-hidden aspect-video">
                 <iframe src="https://www.youtube.com/embed/8EloZtWX_z4?si=Grhhh5mHoy7Gs6gu" class="w-full h-full"
-                  allowfullscreen title="MIDI Electronic Bagpipe">
+                  allowfullscreen title="Filling Tank (Timers)">
                 </iframe>
               </div>
             </div>
@@ -435,7 +503,7 @@
             <div class="mt-6 bg-slate-800 p-6 rounded-xl">
               <div class="rounded-xl overflow-hidden aspect-video">
                 <iframe src="https://www.youtube.com/embed/kEilJSGBqvc?si=LRpSsEHMNE2kKBH_" class="w-full h-full"
-                  allowfullscreen title="MIDI Electronic Bagpipe">
+                  allowfullscreen title="From A to B">
                 </iframe>
               </div>
             </div>
@@ -503,7 +571,7 @@
             <div class="mt-6 bg-slate-800 p-6 rounded-xl">
               <div class="rounded-xl overflow-hidden aspect-video">
                 <iframe src="https://www.youtube.com/embed/bJmT7NBe-Ko?si=at7viZ70vwz1dzDT" class="w-full h-full"
-                  allowfullscreen title="Level Control PID">
+                  allowfullscreen title="Level Control">
                 </iframe>
               </div>
             </div>
@@ -562,7 +630,7 @@
             <div class="mt-6 bg-slate-800 p-6 rounded-xl">
               <div class="rounded-xl overflow-hidden aspect-video">
                 <iframe src="https://www.youtube.com/embed/j0LxqWSHm2k?si=FejHRPOu1MJ201Jv" class="w-full h-full"
-                  allowfullscreen title="Level Control PID">
+                  allowfullscreen title="Queue of items (Counters)">
                 </iframe>
               </div>
             </div>
@@ -595,7 +663,7 @@
             <div class="mt-6 bg-slate-800 p-6 rounded-xl">
               <div class="rounded-xl overflow-hidden aspect-video">
                 <iframe src="https://www.youtube.com/embed/IwwP4jiN5TU?si=2AGHBiei9Q4bom9H" class="w-full h-full"
-                  allowfullscreen title="Level Control PID">
+                  allowfullscreen title="From A to B (Set and Reset)">
                 </iframe>
               </div>
             </div>
@@ -626,10 +694,11 @@
                 class="h-80 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
             </div>
             <p class="text-base text-slate-300 mt-4">
-              In this scene the objective is to sort cardboard boxes by weight using a conveyor scale. I used Codesys to
-              program the simulated PLC CODESYS Control Win Systray x64.
-              To communicate with the simulation in Factory IO the virtual PLC acts as an OPC-UA server, exposing the
-              variables that i choose from the symbol configuration object.
+              The main program implements the start/stop control system with an interlocked emergency-stop
+              and self-latching run state, which then enables the main control logic (FB_control) and simultaneously
+              tracks how many boxes exit via the three different conveyor directions.
+              Then I also programmed a separated FB for the emergency stop button that turns off all the outputs, and a
+              FC block for the activation of the buttons lights.
             </p>
             <div class="mt-6 flex gap-3 flex-wrap justify-center">
               <img src="/projects/factoryIO_examples/sorting_by_weight/3.png" onclick="abrirModal(this.src)"
@@ -644,24 +713,24 @@
               entering the scale, taking the weight measurement, deciding the destination, and finally
               being routed to the right, front, or left conveyor. A short timer (TON) is used to let the
               weight reading stabilize before it's captured with a MOVE instruction into Weight_OUT. That
-              value is then compared against three different weight ranges using GT/LE blocks, which
+              value is then compared against three different weight ranges using comparator blocks, which
               determine which of the three branches (E4, E5 or E6) the box will follow.
             </p>
             <div class="mt-6 flex gap-3 flex-wrap justify-center">
               <img src="/projects/factoryIO_examples/sorting_by_weight/sorting_weight_full.png"
                 onclick="abrirModal(this.src)"
-                class="h-80 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+                class="h-[2000px] w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
             </div>
             <!-- Video -->
             <div class="mt-6 bg-slate-800 p-6 rounded-xl">
               <div class="rounded-xl overflow-hidden aspect-video">
-                <iframe src="https://www.youtube.com/embed/IwwP4jiN5TU?si=2AGHBiei9Q4bom9H" class="w-full h-full"
-                  allowfullscreen title="Level Control PID">
+                <iframe src="https://www.youtube.com/embed/6Zd_DDBvMXI?si=SVd6h1gPpSiEeIYR" class="w-full h-full"
+                  allowfullscreen title="Sorting by Weight">
                 </iframe>
               </div>
             </div>
             <div class="mt-4 flex gap-3">
-              <a href="../assets/downloads/Solved_factoryIO_examples/From_A_to_B_(Set_and_Reset).zip" download
+              <a href="../assets/downloads/Solved_factoryIO_examples/Sorting_By_Weight.zip" download
                 class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
                 ⬇ Download Project Files
               </a>
@@ -706,126 +775,25 @@
       document.getElementById('modal').classList.add('hidden');
     }
 
-    const planos = [
-      { src: '/projects/gaita_electronica/plano1.jpg', nombre: 'Drawing 1' },
-      { src: '/projects/gaita_electronica/plano2.jpg', nombre: 'Drawing 2' },
-      { src: '/projects/gaita_electronica/plano3.jpg', nombre: 'Drawing 3' },
-      { src: '/projects/gaita_electronica/plano4.jpg', nombre: 'Drawing 4' },
-      { src: '/projects/gaita_electronica/plano5.jpg', nombre: 'Drawing 5' },
-      { src: '/projects/gaita_electronica/gaita_esquemático.png', nombre: 'Schematic' },
-    ];
+    // Parallax: la imagen de fondo se desplaza proporcionalmente al scroll
+    // de la página, recorriendo su margen extra de arriba a abajo.
+    function updateParallax() {
+      const img = document.getElementById("bg-image");
+      if (!img) return;
 
-    let actual = 0;
+      const scrollTop = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = maxScroll > 0 ? scrollTop / maxScroll : 0;
 
-    function mover(dir) {
-      actual = (actual + dir + planos.length) % planos.length;
-      const p = planos[actual];
-      document.getElementById('visor').src = p.src;
-      document.getElementById('visor').alt = p.nombre;
-      document.getElementById('nombre').textContent = p.nombre;
-      document.getElementById('descarga').href = p.src;
-      document.getElementById('descarga').download = p.src;
-      document.getElementById('contador').textContent = `${actual + 1} / ${planos.length}`;
-    }
-  </script>
+      const extraHeight = img.offsetHeight - window.innerHeight;
+      const translateY = -progress * extraHeight;
 
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-    }
-  }
-  </script>
-
-  <script type="module">
-    import * as THREE from 'three';
-    import { STLLoader } from 'three/addons/loaders/STLLoader.js';
-    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-
-    const modelos = [
-      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/punteiro3_sup.stl', nombre: 'punteiro3_sup' },
-      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/boca_fol.stl', nombre: 'boca_fol' },
-      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/brida_cables_punteiro.stl', nombre: 'brida_cables_punteiro' },
-      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/caja_inf.stl', nombre: 'caja_inf' },
-      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/caja_sensor.stl', nombre: 'caja_sensor' },
-      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/caja_sup.stl', nombre: 'caja_sup' },
-      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/punteiro3_inf.stl', nombre: 'punteiro3_inf' },
-      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/soporte_pantalla_botones.stl', nombre: 'soporte_pantalla_botones' },
-      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/soporte_soprete.stl', nombre: 'soporte_soprete' },
-      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/soprete.stl', nombre: 'soprete' },
-      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Gaita_electronica_MIDI/main/2_stl/tuerca.stl', nombre: 'tuerca' },
-    ];
-
-    const canvas = document.getElementById('canvas3d');
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-    renderer.setClearColor(0x1e293b);
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
-    camera.position.set(0, 0, 220);
-
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-
-    scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-    const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-    dirLight.position.set(5, 10, 7);
-    scene.add(dirLight);
-
-    let actual3d = 0;
-    let meshActual = null;
-    const loader = new STLLoader();
-
-    function cargarModelo(index) {
-      if (meshActual) scene.remove(meshActual);
-      const m = modelos[index];
-      document.getElementById('nombre3d').textContent = m.nombre;
-      document.getElementById('contador3d').textContent = `${index + 1} / ${modelos.length}`;
-
-      loader.load(m.src, (geometry) => {
-        geometry.computeBoundingBox();
-        const center = new THREE.Vector3();
-        geometry.boundingBox.getCenter(center);
-        geometry.translate(-center.x, -center.y, -center.z);
-
-        const size = new THREE.Vector3();
-        geometry.boundingBox.getSize(size);
-        const maxDim = Math.max(size.x, size.y, size.z);
-        camera.position.set(0, 0, maxDim * 2);
-        controls.reset();
-
-        const material = new THREE.MeshStandardMaterial({
-          color: 0xd1d5db,
-          metalness: 0.2,
-          roughness: 0.6
-        });
-        meshActual = new THREE.Mesh(geometry, material);
-        scene.add(meshActual);
-      });
+      img.style.transform = `translateY(${translateY}px)`;
     }
 
-    window.mover3d = function (dir) {
-      actual3d = (actual3d + dir + modelos.length) % modelos.length;
-      cargarModelo(actual3d);
-    };
-
-    cargarModelo(0);
-
-    function animate() {
-      requestAnimationFrame(animate);
-      controls.update();
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    window.addEventListener('resize', () => {
-      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-      camera.aspect = canvas.clientWidth / canvas.clientHeight;
-      camera.updateProjectionMatrix();
-    });
+    window.addEventListener("scroll", updateParallax);
+    window.addEventListener("resize", updateParallax);
+    updateParallax();
   </script>
 
 </body>
