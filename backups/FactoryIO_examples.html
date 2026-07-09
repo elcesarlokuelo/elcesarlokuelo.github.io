@@ -633,18 +633,16 @@
                   class="max-w-full max-h-full object-contain" alt="Imagen 1">
               </div>
               <div class="px-4 py-3 flex items-center justify-between bg-slate-900">
-                <span id="pp-contador" class="text-slate-400 text-sm">
-                  1 / 5
-                </span>
+                <span id="pp-contador" class="text-slate-400 text-sm">1 / 5</span>
                 <p id="pp-nombre" class="text-sm font-medium">
                   PLC físico
                 </p>
                 <div class="flex gap-2">
-                  <button onclick="moverCarrusel('pp', -1)"
+                  <button onclick="ppMover(-1)"
                     class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">
                     ← Previous
                   </button>
-                  <button onclick="moverCarrusel('pp', 1)"
+                  <button onclick="ppMover(1)"
                     class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">
                     Next →
                   </button>
@@ -701,22 +699,20 @@
             <!-- Carrusel de imágenes 2-->
             <div class="border border-slate-700 rounded-xl overflow-hidden mt-4">
               <div class="h-[650px] flex items-center justify-center bg-slate-950">
-                <img id="pp2-visor" src="/projects/factoryIO_examples/pick_and_place_xyz/3.png"
+                <img id="pp-visor" src="/projects/factoryIO_examples/pick_and_place_xyz/OB100.png"
                   class="max-w-full max-h-full object-contain" alt="Imagen 1">
               </div>
               <div class="px-4 py-3 flex items-center justify-between bg-slate-900">
-                <span id="pp2-contador" class="text-slate-400 text-sm">
-                  1 / 5
-                </span>
-                <p id="pp2-nombre" class="text-sm font-medium">
-                  PLC físico
+                <span id="pp-contador" class="text-slate-400 text-sm">1 / 5</span>
+                <p id="pp-nombre" class="text-sm font-medium">
+                  OB100
                 </p>
                 <div class="flex gap-2">
-                  <button onclick="moverCarrusel('pp2', -1)"
+                  <button onclick="ppMover(-1)"
                     class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">
                     ← Previous
                   </button>
-                  <button onclick="moverCarrusel('pp2', 1)"
+                  <button onclick="ppMover(1)"
                     class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">
                     Next →
                   </button>
@@ -727,7 +723,7 @@
             <!-- Video -->
             <div class="mt-6 bg-slate-800 p-6 rounded-xl">
               <div class="rounded-xl overflow-hidden aspect-video">
-                <iframe src="https://www.youtube.com/embed/aVcrs_Q6Ahk?si=qlUU6R_5zyVacUgc" class="w-full h-full" allowfullscreen
+                <iframe src="https://www.youtube.com/embed/REPLACE_VIDEO_ID" class="w-full h-full" allowfullscreen
                   title="Pick And Place XYZ">
                 </iframe>
               </div>
@@ -735,7 +731,7 @@
 
             <!-- Dentro del div del ejemplo, después del vídeo -->
             <div class="mt-4 flex gap-3">
-              <a href="../assets/downloads/Solved_factoryIO_examples/Pick_&_Place_XYZ_TIA_Portal.zip" download
+              <a href="../assets/downloads/Solved_factoryIO_examples/Pick_And_Place_XYZ.zip" download
                 class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
                 ⬇ Download Project Files
               </a>
@@ -918,45 +914,33 @@
       document.getElementById('modal').classList.add('hidden');
     }
 
-    const carruseles = {};
-    function crearCarrusel(id, imagenes) {
-      carruseles[id] = {
-        imagenes,
-        actual: 0
-      };
-      actualizarCarrusel(id);
-    }
-    function moverCarrusel(id, dir) {
-      const c = carruseles[id];
-      c.actual = (c.actual + dir + c.imagenes.length) % c.imagenes.length;
-      actualizarCarrusel(id);
-    }
-    function actualizarCarrusel(id) {
-      const c = carruseles[id];
-      const img = c.imagenes[c.actual];
-      document.getElementById(`${id}-visor`).src = img.src;
-      document.getElementById(`${id}-visor`).alt = img.nombre;
-      document.getElementById(`${id}-nombre`).textContent = img.nombre;
-      document.getElementById(`${id}-contador`).textContent =
-        `${c.actual + 1} / ${c.imagenes.length}`;
-    }
-
-    crearCarrusel("pp", [
-      { src: "/projects/factoryIO_examples/pick_and_place_xyz/3.png", nombre: "Excel mapping" },
+    const ppImagenes = [
+      { src: "/projects/factoryIO_examples/pick_and_place_xyz/3.png", nombre: "excel mapeo" },
       { src: "/projects/factoryIO_examples/pick_and_place_xyz/entradas.png", nombre: "Entradas" },
       { src: "/projects/factoryIO_examples/pick_and_place_xyz/salidas.png", nombre: "Salidas" },
       { src: "/projects/factoryIO_examples/pick_and_place_xyz/aux var.png", nombre: "Variables auxiliares" },
       { src: "/projects/factoryIO_examples/pick_and_place_xyz/tabla de variables estandar.png", nombre: "Tabla de variables estándar" }
-    ]);
+    ];
+    let ppActual = 0;
+    function ppMover(dir) {
+      ppActual = (ppActual + dir + ppImagenes.length) % ppImagenes.length;
+      const p = ppImagenes[ppActual];
+      document.getElementById('pp-visor').src = p.src;
+      document.getElementById('pp-visor').alt = p.nombre;
+      document.getElementById('pp-nombre').textContent = p.nombre;
+      document.getElementById('pp-contador').textContent = `${ppActual + 1} / ${ppImagenes.length}`;
+    }
 
-    crearCarrusel("pp2", [
+    const pp2Imagenes = [
       { src: "/projects/factoryIO_examples/pick_and_place_xyz/OB100.png", nombre: "OB100" },
-      { src: "/projects/factoryIO_examples/pick_and_place_xyz/Control_cinta_entrada.png", nombre: "FC5 Control cinta entrada" },
-      { src: "/projects/factoryIO_examples/pick_and_place_xyz/Control_cinta_cajas.png", nombre: "FC2 Control cinta cajas" },
-      { src: "/projects/factoryIO_examples/pick_and_place_xyz/Control_exit_conveyor.png", nombre: "FC4 Control exit conveyor" },
-      { src: "/projects/factoryIO_examples/pick_and_place_xyz/luces_botones.png", nombre: "FC1 Luces botones" }
-    ]);
-
+      { src: "/projects/factoryIO_examples/pick_and_place_xyz/Control_cinta_entrada.png", nombre: "Control cinta entrada" },
+      { src: "/projects/factoryIO_examples/pick_and_place_xyz/Control_cinta_cajas.png", nombre: "Control cinta cajas" },
+      { src: "/projects/factoryIO_examples/pick_and_place_xyz/Control_exit_conveyor.png", nombre: "Control exit conveyor" },
+      { src: "/projects/factoryIO_examples/pick_and_place_xyz/contador_terminados.png", nombre: "Contador terminados" },
+      { src: "/projects/factoryIO_examples/pick_and_place_xyz/luces_botones.png", nombre: "Luces botones" }
+    ];
+    let pp2Actual = 0;
+    
 
     // Parallax: la imagen de fondo se desplaza proporcionalmente al scroll
     // de la página, recorriendo su margen extra de arriba a abajo.
