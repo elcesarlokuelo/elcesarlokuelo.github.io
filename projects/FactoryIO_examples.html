@@ -584,16 +584,6 @@
           </div>
           <!-- #endregion -->
 
-          <!-- #region Palletizer -->
-          <div class="mt-6 bg-slate-800 p-6 rounded-xl">
-            <h2 class="text-2xl font-semibold mb-4">Palletizer</h2>
-            <p class="text-base text-slate-300">
-              This is
-              The objective in this example is to assemble parts made of lids and bases using a two-axis pick and place.
-            </p>
-          </div>
-          <!-- #endregion -->
-
           <!-- #region Pick And Place XYZ -->
           <div class="mt-6 bg-slate-800 p-6 rounded-xl">
             <h2 class="text-2xl font-semibold mb-4">Pick And Place XYZ</h2>
@@ -601,7 +591,8 @@
             <p class="text-base text-slate-300 mt-4">
               The objective in this example is to place boxes onto pallets using a three-axis Cartesian
               manipulator (X, Y, Z). Unlike the other examples, here I used a real Siemens S7-1200 PLC
-              (CPU 1215C DC/DC/DC) programmed in TIA Portal, communicating with Factory IO over Profinet
+              (CPU 1215C DC/DC/DC) with an additional SM1221 digital input module, all programmed in TIA Portal,
+              communicating with Factory IO over Profinet
               instead of a simulated soft-PLC. The control logic combines Ladder Diagram for the sequencing
               and Structured Text (SCL) for the position comparison logic.
             </p>
@@ -688,6 +679,15 @@
             </div>
 
             <p class="text-base text-slate-300 mt-4">
+              The OB1 controls the overall program flow, checking the emergency stop and Auto selector, and calling the
+              different functions and FBs. It controls also the emergency state and the running mode.
+            </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/pick_and_place_xyz/OB1.png" onclick="abrirModal(this.src)"
+                class="max-h-[1500px] w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+
+            <p class="text-base text-slate-300 mt-4">
               The rest of the program is split into small, single-purpose blocks: Control_cinta_entrada
               handles the pallet conveyor, using edge-detected memory bits and an SR block so the conveyor
               only restarts once the previous pallet has left and a new one is confirmed in position;
@@ -727,8 +727,8 @@
             <!-- Video -->
             <div class="mt-6 bg-slate-800 p-6 rounded-xl">
               <div class="rounded-xl overflow-hidden aspect-video">
-                <iframe src="https://www.youtube.com/embed/aVcrs_Q6Ahk?si=qlUU6R_5zyVacUgc" class="w-full h-full" allowfullscreen
-                  title="Pick And Place XYZ">
+                <iframe src="https://www.youtube.com/embed/aVcrs_Q6Ahk?si=qlUU6R_5zyVacUgc" class="w-full h-full"
+                  allowfullscreen title="Pick And Place XYZ">
                 </iframe>
               </div>
             </div>
@@ -736,6 +736,155 @@
             <!-- Dentro del div del ejemplo, después del vídeo -->
             <div class="mt-4 flex gap-3">
               <a href="../assets/downloads/Solved_factoryIO_examples/Pick_&_Place_XYZ_TIA_Portal.zip" download
+                class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
+                ⬇ Download Project Files
+              </a>
+            </div>
+          </div>
+          <!-- #endregion -->
+
+          <!-- #region Palletizer -->
+          <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+            <h2 class="text-2xl font-semibold mb-4">Palletizer</h2>
+
+            <p class="text-base text-slate-300 mt-4">
+              The objective in this example is to palletize boxes in stacked layers using a palletizer machine.
+              As with the Pick And Place XYZ example, I used a
+              real Siemens S7-1200 PLC (CPU 1215C DC/DC/DC) with an additional SM1221 digital input module,
+              programmed in TIA Portal and communicating with Factory IO over Profinet.
+            </p>
+
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/palletizer/device_config.png" onclick="abrirModal(this.src)"
+                class="h-64 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+              <img src="/projects/factoryIO_examples/palletizer/arbol_proyecto.png" onclick="abrirModal(this.src)"
+                class="h-64 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+
+            <p class="text-base text-slate-300 mt-4">
+              As always, I started by defining the I/Os of the palletizing system. Firstly I planned the IO mapping
+              using an
+              excel sheet, and afterwards defining the variables in different plc variables tables in TIA Portal.
+            </p>
+
+            <!-- Carrusel de imágenes -->
+            <div class="border border-slate-700 rounded-xl overflow-hidden mt-4">
+              <div class="h-[650px] flex items-center justify-center bg-slate-950">
+                <img id="pp3-visor" src="/projects/factoryIO_examples/pick_and_place_xyz/3.png"
+                  class="max-w-full max-h-full object-contain" alt="Imagen 1">
+              </div>
+              <div class="px-4 py-3 flex items-center justify-between bg-slate-900">
+                <span id="pp3-contador" class="text-slate-400 text-sm">
+                  1 / 4
+                </span>
+                <p id="pp3-nombre" class="text-sm font-medium">
+                  PLC físico
+                </p>
+                <div class="flex gap-2">
+                  <button onclick="moverCarrusel('pp3', -1)"
+                    class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">
+                    ← Previous
+                  </button>
+                  <button onclick="moverCarrusel('pp3', 1)"
+                    class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">
+                    Next →
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-base text-slate-300 mt-4">
+              The program is organized into one Organization Block and five Function Blocks, plus the
+              connection function shared with the other examples. OB1 (Main) calls the Factory IO
+              connection function every scan, and uses two P_TRIG blocks to detect a change on the
+              Manual/Auto selector switch, setting a "modo_cambiado" flag whenever the mode is switched. A
+              Start/Stop seal-in circuit sets the "marcha" (running) bit, but this circuit is interlocked
+              with "modo_cambiado" so that changing the selector mid-cycle forces the system to stop rather
+              than continuing in an undefined state. When the system is running in Auto, OB1 calls FB2
+              (modo_automatico), and "marcha" also drives a warning light.
+            </p>
+
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/palletizer/OB1.png" onclick="abrirModal(this.src)"
+                class="max-h-[800px] w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+
+            <p class="text-base text-slate-300 mt-4">
+              FB2 (modo_automatico) calls the four process blocks every scan — control_roller_1,
+              control_roller_2, control_ascensor and control_apilamiento — each with its own instance data
+              block. These blocks run independently and stay synchronized through the physical sensors and a
+              few shared memory bits.
+            </p>
+
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/palletizer/FB2.png" onclick="abrirModal(this.src)"
+                class="h-80 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+
+            <p class="text-base text-slate-300 mt-4">
+              control_roller_1 is a state machine (E0 to E5) that manages the entry conveyor: it waits for the
+              palletizer to be free, edge-detects a new pallet arriving at the entry sensor, feeds it in and
+              starts loading it into the palletizer, waits until the Pallet_loaded sensor confirms it's in
+              position, and then holds until the "pale_terminado" flag is set by the elevator block before
+              returning to E0 to accept the next pallet.
+            </p>
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/palletizer/FB3.png" onclick="abrirModal(this.src)"
+                class="max-h-[1000px] w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+
+            <p class="text-base text-slate-300 mt-4">
+              control_roller_2 uses a single TP (pulse) timer triggered on the falling edge of the exit
+              sensor, keeping the exit conveyor running for a fixed 10 seconds so the finished pallet has
+              enough time to clear the station after passing the sensor.
+            </p>
+
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/palletizer/FB4.png" onclick="abrirModal(this.src)"
+                class="h-80 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+
+            <p class="text-base text-slate-300 mt-4">
+              control_ascensor controls the lifting platform with a state machine (E0 to E6). Once a pallet is
+              loaded it raises the platform to the first stacking level, using the Elevator_moving sensor
+              together with TON timers to confirm the movement has started and finished. It then waits for the
+              "primer_nivel_OK" flag from the stacking logic before raising to the second level, waits for
+              "segundo_nivel_OK", and finally lowers the platform, sets "pale_terminado", and returns control
+              to control_roller_1 so the pallet can be evacuated and a new one loaded.
+            </p>
+
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/palletizer/FB5.png" onclick="abrirModal(this.src)"
+                class="max-h-[1400px] w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+
+            <p class="text-base text-slate-300 mt-4">
+              control_apilamiento handles the stacking sequence with a state machine from E0 to E9. It feeds
+              boxes in from the entry belt, uses two CTU up-counters to track how many boxes have been placed
+              per row and column (with the target counts written via MOVE instructions), pushes each box
+              against the plate, alternates the turntable 90° between boxes using the Pusher_limit feedback,
+              closes the clamp to compact them, and opens/closes the plate using the Plate_limit sensor
+              together with several TON timers to let each movement settle. Once a full layer has been placed
+              it sets "primer_nivel_OK" or "segundo_nivel_OK", which control_ascensor uses to move the
+              platform to the next level.
+            </p>
+
+            <div class="mt-4 flex gap-3 flex-wrap justify-center">
+              <img src="/projects/factoryIO_examples/palletizer/FB6.png" onclick="abrirModal(this.src)"
+                class="max-h-[3000px] w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+
+            <!-- Video -->
+            <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+              <div class="rounded-xl overflow-hidden aspect-video">
+                <iframe src="https://www.youtube.com/embed/TU_VIDEO_ID_AQUI" class="w-full h-full" allowfullscreen
+                  title="Palletizer">
+                </iframe>
+              </div>
+            </div>
+
+            <div class="mt-4 flex gap-3">
+              <a href="../assets/downloads/Solved_factoryIO_examples/Palletizer_TIA_Portal.zip" download
                 class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
                 ⬇ Download Project Files
               </a>
@@ -955,6 +1104,13 @@
       { src: "/projects/factoryIO_examples/pick_and_place_xyz/Control_cinta_cajas.png", nombre: "FC2 Control cinta cajas" },
       { src: "/projects/factoryIO_examples/pick_and_place_xyz/Control_exit_conveyor.png", nombre: "FC4 Control exit conveyor" },
       { src: "/projects/factoryIO_examples/pick_and_place_xyz/luces_botones.png", nombre: "FC1 Luces botones" }
+    ]);
+
+    crearCarrusel("pp3", [
+      { src: "/projects/factoryIO_examples/palletizer/excel_entradas_salidas.png", nombre: "Excel mapping" },
+      { src: "/projects/factoryIO_examples/palletizer/entradas.png", nombre: "Entradas" },
+      { src: "/projects/factoryIO_examples/palletizer/Salidas.png", nombre: "Salidas" },
+      { src: "/projects/factoryIO_examples/palletizer/Variables_memoria.png", nombre: "Variables en memoria" }
     ]);
 
 
