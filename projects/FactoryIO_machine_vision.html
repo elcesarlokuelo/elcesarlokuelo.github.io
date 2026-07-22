@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory IO classification algorithms with machine vision</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .dropdown {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .dropdown.open {
+            max-height: 500px;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-950 text-white">
+    <!-- Fondo desenfocado con parallax -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <img id="bg-image" src="/assets/machine_vision_2.webp"
+            class="absolute top-0 left-0 w-full h-[150%] object-cover blur-sm scale-110">
+        <div class="absolute inset-0 bg-slate-950/40"></div>
+    </div>
+    <div class="flex">
+
+        <!-- SIDEBAR -->
+        <aside class="fixed left-0 top-0 h-screen w-72 bg-slate-900 border-r border-slate-800 p-6">
+            <a href="../index.html">
+                <h1 class="text-2xl font-bold hover:text-blue-400 transition">
+                    César Núñez Bayón
+                </h1>
+            </a>
+            <p class="text-slate-400 text-sm mt-2">
+                Robotics · Electronics · Mechatronics Engineer
+            </p>
+            <nav class="mt-10 space-y-3">
+                <a href="../index.html#about" class="block hover:text-blue-400">
+                    About Me
+                </a>
+                <!-- PROJECTS BUTTON -->
+                <button onclick="toggleProjects()"
+                    class="w-full text-left flex justify-between items-center hover:text-blue-400">
+                    <span>Projects</span>
+                    <span id="arrow">▾</span>
+                </button>
+                <!-- DROPDOWN -->
+                <div id="projects-menu" class="dropdown ml-4 mt-2 space-y-2 text-sm border-l border-slate-700 pl-4">
+                    <a href="../projects/FactoryIO_examples.html" class="block hover:text-blue-400">
+                        Solved Factory IO Examples
+                    </a>
+                    <a href="../projects/FactoryIO_machine_vision.html" class="block text-blue-400 font-medium">
+                        Factory IO and Machine Vision
+                    </a>
+                    <a href="../projects/gaita_electronica.html" class="block hover:text-blue-400">
+                        Electronic Bagpipe MIDI
+                    </a>
+                    <a href="../projects/embedded.html" class="block hover:text-blue-400">
+                        Robotic Arm with Arduino
+                    </a>
+                    <a href="../projects/yolo-vision.html" class="block hover:text-blue-400">
+                        Computer Vision with Kinect and Orbbec Cameras
+                    </a>
+                    <a href="../projects/project_template.html" class="block hover:text-blue-400">
+                        Ejemplo de pagina de proyecto
+                    </a>
+                </div>
+                <a href="../index.html#education" class="block hover:text-blue-400 mt-6">
+                    Education
+                </a>
+                <a href="../index.html#contact" class="block hover:text-blue-400">
+                    Contact and Socials
+                </a>
+            </nav>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="ml-72 w-full">
+
+            <div class="px-10 py-16">
+                <div class="max-w-5xl mx-auto">
+
+                    <div class="relative w-full max-w-5xl mx-auto h-[600px] rounded-xl overflow-hidden mb-10">
+                        <img src="/projects/factoryIO_examples/factory.png" class="w-full h-full object-cover
+            [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]
+            [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
+                    </div>
+                    <h1 class="text-5xl font-bold mt-6">Factory IO and Machine Vision</h1>
+                    <p class="text-slate-300 mt-4">Factory IO · Machine Vision · PLC · TIA Portal · OpenCV · </p>
+                    <!-- Descripción -->
+                    <div class="mt-10 bg-slate-800 p-6 rounded-xl">
+                        <p class="mt-3 text-base text-slate-300">
+                            In this section, I created a series of Factory IO scenes, and using machine vision algorithms
+                             
+                            . Each scene demonstrates the implementation of various automation
+                            tasks, showcasing the integration of PLC programming, communication protocols, and machine
+                            vision techniques.
+                        </p>
+
+                        <p class="mt-3 text-base text-slate-300">
+                            All factory IO files and project resources are available in the repository:
+                            <a href="https://github.com/elcesarlokuelo/elcesarlokuelo.github.io/tree/main/assets/Downloads/FactoryIO_machine_vision"
+                                target="_blank" class="text-blue-400">
+                                https://github.com/elcesarlokuelo/elcesarlokuelo.github.io/tree/main/assets/Downloads/FactoryIO_machine_vision
+                            </a>
+                        </p>
+
+                        <p class="mt-3 text-base text-slate-300">
+                            Each example will include a description of the problem, the implemented solution in the
+                            chosen PLC code
+                            language, and the corresponding software and communication protocol used. For all the
+                            scenes there will
+                            be a video
+                            demonstration of the solution within the Factory IO simulation environment, and a
+                            link for
+                            downloading the project files.
+                        </p>
+                    </div>
+
+                    <!-- #region Assembler (Analog)-->
+                    <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+                        <h2 class="text-2xl font-semibold mb-4">Assembler (Analog)</h2>
+
+                        <p class="text-base text-slate-300 mt-4">
+                            This example is very similar to the previous one, but in this case we use analog inputs and
+                            outputs to
+                            control the pick and place axes and positions. I used Codesys and Modbus TCP to communicate
+                            with Factory
+                            IO.
+                            The PLC program is written in Ladder logic, using a finite state machine to control the pick
+                            and place
+                            operation.
+                        </p>
+                        <p class="text-base text-slate-300 mt-4">
+                            For this example i used the CADe_SIMU software to create a grafcet diagram of the process,
+                            making it
+                            easier to then translate it into the PLC ladder program.
+                        </p>
+                        <div class="mt-4 flex gap-3 flex-wrap justify-center">
+                            <img src="/projects/factoryIO_examples/assembler_(analog)/5.png"
+                                onclick="abrirModal(this.src)"
+                                class="h-64 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+                        </div>
+                        <p class="text-base text-slate-300 mt-4">
+                            We also have to define the necessary I/O as global variables, looking at the Factory IO
+                            driver. Then we
+                            have to
+                            link the variables to the corresponding Modbus addresses in the PLC configuration, in the
+                            holding
+                            registers, coils or discrete inputs.
+                        </p>
+                        <div class="mt-4 flex gap-3 flex-wrap justify-center">
+                            <img src="/projects/factoryIO_examples/assembler_(analog)/1.png"
+                                onclick="abrirModal(this.src)"
+                                class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+                            <img src="/projects/factoryIO_examples/assembler_(analog)/4.png"
+                                onclick="abrirModal(this.src)"
+                                class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+                        </div>
+                        <p class="text-base text-slate-300 mt-4">
+                            I use 2 different functions to implement the toggle button logic for the stop push button
+                            and the counter
+                            for the total finished pieces.
+                        </p>
+                        <div class="mt-4 flex gap-3 flex-wrap justify-center">
+                            <img src="/projects/factoryIO_examples/assembler_(analog)/2.png"
+                                onclick="abrirModal(this.src)"
+                                class="h-24 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+                            <img src="/projects/factoryIO_examples/assembler_(analog)/3.png"
+                                onclick="abrirModal(this.src)"
+                                class="h-48 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+                        </div>
+                        <p class="text-base text-slate-300 mt-4">
+                            The program implements a finite state machine with three parallel branches: one tracks the
+                            lid sensor on
+                            conveyor 1, another tracks the base sensor on conveyor 2, and the third controls the robotic
+                            arm's
+                            movement (X/Z positioning, grabbing and releasing parts using position comparisons). State
+                            E0 acts as the
+                            master reset, restarting all three branches when Start is pressed. At the end of the
+                            program, the states
+                            are mapped to the physical outputs: conveyors, stop blades, and other station actuators.
+                        </p>
+                        <div class="mt-4 flex gap-3 flex-wrap justify-center">
+                            <img src="/projects/factoryIO_examples/assembler_(analog)/assembler_full.png"
+                                onclick="abrirModal(this.src)"
+                                class="max-h-[2500px] w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+                        </div>
+                        <!-- Video -->
+                        <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+                            <div class="rounded-xl overflow-hidden aspect-video">
+                                <iframe src="https://www.youtube.com/embed/vx-MxBAllWc?si=vLbkEvppNZ5GeXlk"
+                                    class="w-full h-full" allowfullscreen title="Assembler (Analog)">
+                                </iframe>
+                            </div>
+                        </div>
+                        <!-- Dentro del div del ejemplo, después del vídeo -->
+                        <div class="mt-4 flex gap-3">
+                            <a href="../assets/downloads/Solved_factoryIO_examples/Assembler_(Analog).zip" download
+                                class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition">
+                                ⬇ Download Project Files
+                            </a>
+                        </div>
+                    </div>
+                    <!-- #endregion -->
+
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" onclick="cerrarModal()"
+        class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center cursor-pointer">
+        <img id="modal-img" src="" class="max-h-[90vh] max-w-[90vw] rounded-xl object-contain">
+    </div>
+
+    <script>
+        function toggleProjects() {
+            const menu = document.getElementById("projects-menu");
+            const arrow = document.getElementById("arrow");
+            menu.classList.toggle("open");
+            arrow.textContent = menu.classList.contains("open") ? "▴" : "▾";
+        }
+
+        // Abrir el dropdown al cargar, ya que estamos en un proyecto
+        window.addEventListener('DOMContentLoaded', () => {
+            const menu = document.getElementById("projects-menu");
+            const arrow = document.getElementById("arrow");
+            menu.classList.add("open");
+            arrow.textContent = "▴";
+        });
+
+        function abrirModal(src) {
+            document.getElementById('modal-img').src = src;
+            document.getElementById('modal').classList.remove('hidden');
+        }
+
+        function cerrarModal() {
+            document.getElementById('modal').classList.add('hidden');
+        }
+
+        const carruseles = {};
+        function crearCarrusel(id, imagenes) {
+            carruseles[id] = {
+                imagenes,
+                actual: 0
+            };
+            actualizarCarrusel(id);
+        }
+        function moverCarrusel(id, dir) {
+            const c = carruseles[id];
+            c.actual = (c.actual + dir + c.imagenes.length) % c.imagenes.length;
+            actualizarCarrusel(id);
+        }
+        function actualizarCarrusel(id) {
+            const c = carruseles[id];
+            const img = c.imagenes[c.actual];
+            document.getElementById(`${id}-visor`).src = img.src;
+            document.getElementById(`${id}-visor`).alt = img.nombre;
+            document.getElementById(`${id}-nombre`).textContent = img.nombre;
+            document.getElementById(`${id}-contador`).textContent =
+                `${c.actual + 1} / ${c.imagenes.length}`;
+        }
+
+        //        crearCarrusel("pp", [
+        //            { src: "/projects/factoryIO_examples/pick_and_place_xyz/3.png", nombre: "Excel mapping" },
+        //            { src: "/projects/factoryIO_examples/pick_and_place_xyz/entradas.png", nombre: "Entradas" },
+        //            { src: "/projects/factoryIO_examples/pick_and_place_xyz/salidas.png", nombre: "Salidas" },
+        //            { src: "/projects/factoryIO_examples/pick_and_place_xyz/aux var.png", nombre: "Variables auxiliares" },
+        //            { src: "/projects/factoryIO_examples/pick_and_place_xyz/tabla de variables estandar.png", nombre: "Tabla de variables estándar" }
+        //        ]);
+
+        // Parallax: la imagen de fondo se desplaza proporcionalmente al scroll
+        // de la página, recorriendo su margen extra de arriba a abajo.
+        function updateParallax() {
+            const img = document.getElementById("bg-image");
+            if (!img) return;
+
+            const scrollTop = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = maxScroll > 0 ? scrollTop / maxScroll : 0;
+
+            const extraHeight = img.offsetHeight - window.innerHeight;
+            const translateY = -progress * extraHeight;
+
+            img.style.transform = `translateY(${translateY}px)`;
+        }
+
+        window.addEventListener("scroll", updateParallax);
+        window.addEventListener("resize", updateParallax);
+        updateParallax();
+    </script>
+
+</body>
+
+</html>
