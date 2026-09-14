@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arduino Robotic Arm</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .dropdown {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .dropdown.open {
+      max-height: 500px;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-950 text-white">
+  <!-- Fondo desenfocado con parallax -->
+  <div class="fixed inset-0 -z-10 overflow-hidden">
+    <img id="bg-image" src="/assets/arduino.jpg" class="absolute top-0 left-0 w-full h-[160%] object-cover blur-sm scale-110">
+    <div class="absolute inset-0 bg-slate-950/40"></div>
+  </div>
+
+  <div class="flex">
+
+    <!-- SIDEBAR -->
+    <aside class="fixed left-0 top-0 h-screen w-72 bg-slate-900 border-r border-slate-800 p-6">
+
+      <a href="../index.html">
+        <h1 class="text-2xl font-bold hover:text-blue-400 transition">
+          César Núñez Bayón
+        </h1>
+      </a>
+
+      <p class="text-slate-400 text-sm mt-2">
+        Robotics · Electronics · Mechatronics Engineer
+      </p>
+
+      <nav class="mt-10 space-y-3">
+
+        <a href="../index.html#about" class="block hover:text-blue-400">
+          About Me
+        </a>
+
+        <!-- PROJECTS BUTTON -->
+        <button onclick="toggleProjects()"
+          class="w-full text-left flex justify-between items-center hover:text-blue-400">
+          <span>Projects</span>
+          <span id="arrow">▾</span>
+        </button>
+
+        <!-- DROPDOWN -->
+        <div id="projects-menu" class="dropdown ml-4 mt-2 space-y-2 text-sm border-l border-slate-700 pl-4">
+
+          <a href="../projects/FactoryIO_examples.html" class="block hover:text-blue-400">
+            Solved Factory IO Examples
+          </a>
+
+          <a href="../projects/FactoryIO_machine_vision.html" class="block hover:text-blue-400">
+            Factory IO and Machine Vision
+          </a>
+
+          <a href="../projects/gaita_electronica.html" class="block hover:text-blue-400">
+            Electronic Bagpipe MIDI
+          </a>
+
+          <a href="../projects/Arduino_robotic_arm.html" class="block text-blue-400 font-medium">
+            Robotic Arm with Arduino
+          </a>
+
+          <a href="../projects/yolo-vision.html" class="block hover:text-blue-400">
+            Computer Vision with Kinect and Orbbec Cameras
+          </a>
+
+          <a href="../projects/project_template.html" class="block hover:text-blue-400">
+            Ejemplo de pagina de proyecto
+          </a>
+
+        </div>
+
+        <a href="../index.html#education" class="block hover:text-blue-400 mt-6">
+          Education
+        </a>
+
+        <a href="../index.html#contact" class="block hover:text-blue-400">
+          Contact and Socials
+        </a>
+
+      </nav>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="ml-72 w-full">
+
+      <div class="px-10 py-16">
+        <div class="max-w-5xl mx-auto">
+
+          <h1 class="text-5xl font-bold mt-6">Arduino Robotic Arm</h1>
+          <p class="text-slate-300 mt-4">Arduino · FreeCAD · Robotics</p>
+
+          <!-- Descripción -->
+          <div class="mt-10 bg-slate-800 p-6 rounded-xl">
+            <p class="mt-3 text-base text-slate-300">
+              This project involves building a small-sized robotic arm. Motion control is handled by an Arduino
+              MEGA 2560. The robot's parts are manufactured using a 3D printer and designed in FreeCAD.
+              Additionally, Python is used to build a graphical interface on a computer to send commands to the
+              arm. If needed, inverse kinematics calculations can also be performed on the computer, in case the
+              Arduino doesn't have enough processing power for them.
+            </p>
+
+            <p class="mt-3 text-base text-slate-300">
+              All project content is available in the repository:
+              <a href="https://github.com/elcesarlokuelo/Arduino_Robotic_Arm" target="_blank" class="text-blue-400">
+                https://github.com/elcesarlokuelo/Arduino_Robotic_Arm
+              </a>
+            </p>
+
+            <p class="mt-3 text-base text-slate-300">
+              This project is currently in progress, and the repository will be updated as new developments occur.
+              The goal is to build a fully functional robotic arm using several SG90 servo motors and an MG995
+              servo motor for the base rotation. The arm will be capable of performing tasks such as picking up
+              objects, moving them, and placing them at different locations.
+            </p>
+
+            <p class="mt-3 text-base text-slate-300">
+              Additionally, the project will include a graphical interface that allows users to control the arm's
+              movements and perform tasks from a computer.
+            </p>
+          </div>
+
+          <!-- Hardware -->
+          <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+            <h2 class="text-2xl font-semibold mb-4">Hardware</h2>
+
+            <p class="text-base text-slate-300">
+              The main hardware components used are:
+            </p>
+
+            <ul class="mt-3 text-base text-slate-300 space-y-3 list-disc list-inside">
+              <li>
+                <span class="text-white font-medium">Arduino MEGA 2560 microcontroller:</span>
+                8-bit microcontroller based on the ATmega2560. It has 54 digital input/output pins, 16 analog inputs,
+                and a USB connection for programming and communication with a computer.
+              </li>
+              <li>
+                <span class="text-white font-medium">SG90 servomotors:</span>
+                small, lightweight servomotors commonly used in robotics projects. They are controlled by
+                pulse-width modulation (PWM) signals from the Arduino and are used for the arm's joints, providing
+                precise control of its movements. Their main limitation is that only position can be controlled,
+                not speed: they cannot rotate continuously, and PID-type control cannot be applied to them.
+              </li>
+              <li>
+                <span class="text-white font-medium">MG995 servomotor:</span>
+                similar to the SG90 but larger and more powerful, it is used for the base rotation of the arm. It
+                has metal gears and can rotate up to 180 degrees, although it is likewise not capable of continuous
+                rotation.
+              </li>
+            </ul>
+
+            <div class="mt-6 flex gap-3 flex-wrap">
+              <img src="/projects/Arduino_robotic_arm/arduino.jpg" onclick="abrirModal(this.src)"
+                class="h-40 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+              <img src="/projects/Arduino_robotic_arm/servo-sg90-1kg.jpg" onclick="abrirModal(this.src)"
+                class="h-40 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+              <img src="/projects/Arduino_robotic_arm/mg995.jpg" onclick="abrirModal(this.src)"
+                class="h-40 w-auto rounded-lg object-cover cursor-pointer hover:opacity-80 transition">
+            </div>
+          </div>
+
+          <!-- Software -->
+          <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+            <h2 class="text-2xl font-semibold mb-4">Software</h2>
+
+            <p class="text-base text-slate-300">
+              The microcontroller was programmed in Arduino IDE using C++.
+            </p>
+          </div>
+
+          <!-- Mechanical Design -->
+          <div class="mt-6 bg-slate-800 p-6 rounded-xl">
+            <h2 class="text-2xl font-semibold mb-4">Mechanical Design</h2>
+
+            <p class="mt-3 text-base text-slate-300">
+              Parts were modelled in FreeCAD and printed in PLA using an Anycubic Kobra 2 printer.
+              These parts are subject to change as the design is still in progress, and some of them may need to
+              be redesigned to improve performance or fix issues.
+            </p>
+
+            <!-- 3D Models -->
+            <div class="mt-6">
+              <div class="flex items-center justify-between mb-3">
+                <span id="contador3d" class="text-slate-400 text-sm">1 / 6</span>
+
+                <div class="flex gap-2">
+                  <button onclick="mover3d(-1)"
+                    class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">
+                    ← Previous
+                  </button>
+
+                  <button onclick="mover3d(1)"
+                    class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-lg transition text-sm">
+                    Next →
+                  </button>
+                </div>
+              </div>
+
+              <div class="border border-slate-700 rounded-xl overflow-hidden">
+                <canvas id="canvas3d" class="w-full" style="height: 500px;"></canvas>
+
+                <div class="px-4 py-3 flex items-center justify-between">
+                  <p id="nombre3d" class="text-sm font-medium">boca_fol</p>
+                  <p class="text-xs text-slate-500">
+                    Click and drag to rotate · Scroll to zoom
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" onclick="cerrarModal()"
+    class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center cursor-pointer">
+    <img id="modal-img" src="" class="max-h-[90vh] max-w-[90vw] rounded-xl object-contain">
+  </div>
+
+  <script>
+    function toggleProjects() {
+      const menu = document.getElementById("projects-menu");
+      const arrow = document.getElementById("arrow");
+      menu.classList.toggle("open");
+      arrow.textContent = menu.classList.contains("open") ? "▴" : "▾";
+    }
+
+    // Abrir el dropdown al cargar, ya que estamos en un proyecto
+    window.addEventListener('DOMContentLoaded', () => {
+      const menu = document.getElementById("projects-menu");
+      const arrow = document.getElementById("arrow");
+      menu.classList.add("open");
+      arrow.textContent = "▴";
+    });
+
+    function abrirModal(src) {
+      document.getElementById('modal-img').src = src;
+      document.getElementById('modal').classList.remove('hidden');
+    }
+
+    function cerrarModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+  </script>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    const modelos = [
+      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Arduino_Robotic_Arm/main/Hardware/Parts/base/Base.stl', nombre: 'base' },
+      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Arduino_Robotic_Arm/main/Hardware/Parts/lower_arm/lower_arm12.stl', nombre: 'lower arm' },
+      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Arduino_Robotic_Arm/main/Hardware/Parts/upper_arm/upper_arm.stl', nombre: 'upper arm' },
+      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Arduino_Robotic_Arm/main/Hardware/Parts/gripper/Linear_gear.stl', nombre: 'linear gear' },
+      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Arduino_Robotic_Arm/main/Hardware/Parts/gripper/Mount.stl', nombre: 'gripper mount' },
+      { src: 'https://raw.githubusercontent.com/elcesarlokuelo/Arduino_Robotic_Arm/main/Hardware/Parts/gripper/Round_gear.stl', nombre: 'round gear' }
+    ];
+
+    const canvas = document.getElementById('canvas3d');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    renderer.setClearColor(0x1e293b);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+    camera.position.set(0, 0, 220);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+    dirLight.position.set(5, 10, 7);
+    scene.add(dirLight);
+
+    let actual3d = 0;
+    let meshActual = null;
+    const loader = new STLLoader();
+
+    function cargarModelo(index) {
+      if (meshActual) scene.remove(meshActual);
+      const m = modelos[index];
+      document.getElementById('nombre3d').textContent = m.nombre;
+      document.getElementById('contador3d').textContent = `${index + 1} / ${modelos.length}`;
+
+      loader.load(m.src, (geometry) => {
+        geometry.computeBoundingBox();
+        const center = new THREE.Vector3();
+        geometry.boundingBox.getCenter(center);
+        geometry.translate(-center.x, -center.y, -center.z);
+
+        const size = new THREE.Vector3();
+        geometry.boundingBox.getSize(size);
+        const maxDim = Math.max(size.x, size.y, size.z);
+        camera.position.set(0, 0, maxDim * 2);
+        controls.reset();
+
+        const material = new THREE.MeshStandardMaterial({
+          color: 0xd1d5db,
+          metalness: 0.2,
+          roughness: 0.6
+        });
+        meshActual = new THREE.Mesh(geometry, material);
+        scene.add(meshActual);
+      });
+    }
+
+    window.mover3d = function (dir) {
+      actual3d = (actual3d + dir + modelos.length) % modelos.length;
+      cargarModelo(actual3d);
+    };
+
+    cargarModelo(0);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+    });
+
+    // Parallax: la imagen de fondo se desplaza proporcionalmente al scroll
+    // de la página, recorriendo su margen extra de arriba a abajo.
+    function updateParallax() {
+      const img = document.getElementById("bg-image");
+      if (!img) return;
+
+      const scrollTop = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = maxScroll > 0 ? scrollTop / maxScroll : 0;
+
+      const extraHeight = img.offsetHeight - window.innerHeight;
+      const translateY = -progress * extraHeight;
+
+      img.style.transform = `translateY(${translateY}px)`;
+    }
+
+    window.addEventListener("scroll", updateParallax);
+    window.addEventListener("resize", updateParallax);
+    updateParallax();
+  </script>
+
+</body>
+
+</html>
