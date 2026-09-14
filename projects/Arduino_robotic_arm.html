@@ -23,7 +23,8 @@
 <body class="bg-slate-950 text-white">
   <!-- Fondo desenfocado con parallax -->
   <div class="fixed inset-0 -z-10 overflow-hidden">
-    <img id="bg-image" src="/assets/arduino.jpg" class="absolute top-0 left-0 w-full h-[160%] object-cover blur-sm scale-110">
+    <img id="bg-image" src="/assets/arduino.jpg"
+      class="absolute top-0 left-0 w-full h-[200%] object-cover blur-sm scale-110">
     <div class="absolute inset-0 bg-slate-950/40"></div>
   </div>
 
@@ -223,12 +224,12 @@
               </div>
             </div>
           </div>
-          </div>
-
         </div>
-      </div>
 
-    </main>
+      </div>
+  </div>
+
+  </main>
 
   </div>
 
@@ -364,11 +365,14 @@
       if (!img) return;
 
       const scrollTop = window.scrollY;
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = maxScroll > 0 ? scrollTop / maxScroll : 0;
-
       const extraHeight = img.offsetHeight - window.innerHeight;
-      const translateY = -progress * extraHeight;
+
+      const parallaxFactor = 0.1; // 0 = fondo fijo, 1 = misma velocidad que el scroll. Ajusta a tu gusto.
+
+      let translateY = -scrollTop * parallaxFactor;
+
+      // Evita que la imagen se quede sin recorrido antes de que acabe el scroll
+      translateY = Math.max(translateY, -extraHeight);
 
       img.style.transform = `translateY(${translateY}px)`;
     }
